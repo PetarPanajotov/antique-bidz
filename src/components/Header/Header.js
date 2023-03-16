@@ -3,7 +3,8 @@ import { ElevationScroll } from "./ElevationScroll";
 
 const sxStyles = {
     'header-nav': {
-        backgroundColor: 'teal'
+        backgroundColor: '#333333',
+        marginBottom: '11em'
     },
     'header-tabs': {
         display: 'flex',
