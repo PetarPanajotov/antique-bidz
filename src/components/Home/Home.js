@@ -4,7 +4,7 @@ import { Card } from "./Card";
 
 export function Home() {
     return (
-        <Container maxWidth="lg" sx={{backgroundColor: '#FAEBD7' }}>
+        <Container maxWidth="lg" sx={{ height: '100vh', backgroundColor: '#FAEBD7' }}>
             <Box sx={{ textAlign: 'center', flexDirection: 'column' }}>
                 <Box paddingTop={10}>
                     <Typography variant="h1">
@@ -23,9 +23,9 @@ export function Home() {
             <Box paddingTop={10} sx={{ flexDirection: 'column', textAlign: 'center' }}>
                 <Typography variant="h3">Last Offers:</Typography>
                 <Grid container spacing={8} paddingTop={4}>
-                    <Card/>
-                    <Card/>
-                    <Card/>
+                    <Card />
+                    <Card />
+                    <Card />
                 </Grid>
             </Box>
         </Container>
