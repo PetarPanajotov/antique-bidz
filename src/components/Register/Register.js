@@ -28,7 +28,7 @@ export function Register() {
                         <Box paddingTop={5}>
                             <Button variant="contained">Sign up</Button>
                         </Box>
-                        <Box paddingTop={2}>
+                        <Box paddingTop={2} margin = {2}>
                             <a href = '/login'><Typography>Already have account? Sign in</Typography></a>
                         </Box>
                     </Paper>
