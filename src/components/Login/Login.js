@@ -11,7 +11,7 @@ export function Login() {
                         <Box paddingTop={3}>
                             <Box sx = {{display: 'flex', justifyContent: 'center'}}>
                                 <Avatar sx={{ m: 1, bgcolor: 'purple' }}>
-                                    <LockOutlined></LockOutlined>
+                                    <LockOutlined/>
                                 </Avatar>
                             </Box>
                             <Typography variant="h3">Sign in</Typography>
@@ -22,8 +22,11 @@ export function Login() {
                         <Box paddingTop={2}>
                             <TextField id="filled-basic" label="Password" variant="outlined" />
                         </Box>
-                        <Box padding={5}>
+                        <Box paddingTop={5}>
                             <Button variant="contained">Sign in</Button>
+                        </Box>
+                        <Box paddingTop={2} margin = {2}>
+                            <a href = '/register'><Typography>You dont have an account? Sign up</Typography></a>
                         </Box>
                     </Paper>
                 </Grid >
