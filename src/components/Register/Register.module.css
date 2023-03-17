@@ -1,0 +1,50 @@
+.container {
+    padding-top: 25vh;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+}
+
+.form-wrapper {
+    background-color: #FAEBD7;
+    flex-direction: column;
+    width: 400px;
+}
+
+.avatar-wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.avatar {
+    margin: 1;
+    background-color: #333333;
+}
+
+.title-h3 {
+    color: #333333;
+}
+
+.form-input {
+    width: 300px;
+    color: red ;
+}
+
+.form-input :global .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+    border-color: #333333;
+    color: red ;
+    font-size: larger;
+}
+.form-input :global .MuiFormLabel-root {
+    color: #333333;
+    font-size: larger;
+}
+
+.form-button {
+    width: 300px;
+    background-color: #333333;
+}
+
+.form-button:hover {
+    background-color: black;
+}
