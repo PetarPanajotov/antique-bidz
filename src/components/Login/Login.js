@@ -1,36 +1,39 @@
 import { LockOutlined } from "@mui/icons-material";
 import { Avatar, Box, Button, Grid, Paper, TextField, Typography } from "@mui/material";
-import { Container } from "@mui/system";
+import { Container, StyledEngineProvider } from "@mui/system";
+import styles from './Login.module.css'
 
 export function Login() {
     return (
         <form>
-            <Container>
-                <Grid paddingTop={'25vh'} paddingBottom={'25vh'} sx={{ textAlign: 'center', display: 'flex', justifyContent: 'center' }}>
-                    <Paper elevation={11} sx={{ backgroundColor: 'none', flexDirection: 'column', width: '400px' }}>
-                        <Box paddingTop={3}>
-                            <Box sx = {{display: 'flex', justifyContent: 'center'}}>
-                                <Avatar sx={{ m: 1, bgcolor: 'purple' }}>
-                                    <LockOutlined/>
-                                </Avatar>
+            <StyledEngineProvider injectFirst>
+                <Container className={styles['container']}>
+                    <Grid>
+                        <Paper elevation={11} className={styles['form-wrapper']}>
+                            <Box paddingTop={3}>
+                                <Box className={styles['avatar-wrapper']}>
+                                    <Avatar className={styles['avatar']}>
+                                        <LockOutlined />
+                                    </Avatar>
+                                </Box>
+                                <Typography variant="h3" className={styles['title-h3']}>Sign in</Typography>
                             </Box>
-                            <Typography variant="h3">Sign in</Typography>
-                        </Box>
-                        <Box paddingTop={5}>
-                            <TextField id="filled-basic" label="Email" variant="outlined" />
-                        </Box>
-                        <Box paddingTop={2}>
-                            <TextField id="filled-basic" label="Password" variant="outlined" />
-                        </Box>
-                        <Box paddingTop={5}>
-                            <Button variant="contained">Sign in</Button>
-                        </Box>
-                        <Box paddingTop={2} margin = {2}>
-                            <a href = '/register'><Typography>You dont have an account? Sign up</Typography></a>
-                        </Box>
-                    </Paper>
-                </Grid >
-            </Container>
+                            <Box paddingTop={5}>
+                                <TextField className = {styles['form-input']} id="filled-basic" label="Email" variant="outlined" />
+                            </Box>
+                            <Box paddingTop={2}>
+                                <TextField className = {styles['form-input']} id="filled-basic" label="Password" variant="outlined" />
+                            </Box>
+                            <Box paddingTop={5}>
+                                <Button className = {styles['form-button']} variant="contained">Sign in</Button>
+                            </Box>
+                            <Box paddingTop={2} paddingBottom={2}>
+                                <a href='/register'><Typography>You dont have an account? Sign up</Typography></a>
+                            </Box>
+                        </Paper>
+                    </Grid >
+                </Container>
+            </StyledEngineProvider>
         </form>
     );
 };
