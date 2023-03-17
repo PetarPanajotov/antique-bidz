@@ -7,4 +7,8 @@
 }
 .card-button {
     height: 80;
+    background-color: #333333;
+}
+.card-button:hover {
+    background-color: black;
 }
