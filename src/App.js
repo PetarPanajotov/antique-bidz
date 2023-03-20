@@ -1,3 +1,5 @@
+import { Catalogue } from "./components/Catalogue/Catalogue";
+import { CreateBid } from "./components/CreateBid/CreateBid";
 import { Header } from "./components/Header/Header";
 import { Home } from "./components/Home/Home";
 import { Login } from "./components/Login/Login";
@@ -7,7 +9,9 @@ function App() {
   return (
     <>
       <Header />
-        <Home />
+      {/* <CreateBid></CreateBid> */}
+        {/* <Home /> */}
+        <Catalogue></Catalogue>
         {/* <Login></Login> */}
         {/* <Register></Register> */}
     </>
