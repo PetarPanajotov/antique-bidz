@@ -1,5 +1,6 @@
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { Accordion, AccordionDetails, AccordionSummary, Box, Button, Container, Grid, Typography } from "@mui/material"
+import { DeleteBid } from './Delete/Delete';
 import styles from "./Details.module.css"
 
 export function Details() {
@@ -11,7 +12,7 @@ export function Details() {
                         <Typography variant="h4">Item name here</Typography>
                     </Box>
                 </Grid>
-                <Grid item xs={6}>
+                <Grid item xs={12} md = {6} lg={6}>
                     <Box sx={{ width: '400px', paddingTop: 2 }}>
                         <Box>
                             <img
@@ -30,7 +31,7 @@ export function Details() {
                         </Box>
                     </Box>
                 </Grid>
-                <Grid item xs={6}  sx= {{ paddingTop: 2}}>
+                <Grid item xs={12} md = {6} lg={6}  sx= {{ paddingTop: 2}}>
                     <Box sx={{ backgroundColor: 'gray' }}>
                         <Box sx={{ textAlign: 'right', paddingRight: '10px', paddingTop: '10px' }}>
                             <Typography variant="subtitle2">End in: 13:21:10</Typography>
@@ -41,8 +42,11 @@ export function Details() {
                         <Box sx={{ paddingLeft: '10px' }}>
                             <Typography variant="h5">$525.00</Typography>
                         </Box>
-                        <Box sx={{ padding: '10px' }}>
+                        <Box sx={{ padding: '10px', display: 'flex' }}>
                             <Button variant="contained">Place a bid</Button>
+                            <DeleteBid/>
+                        </Box>
+                        <Box>
                         </Box>
                     </Box>
                     <Box sx={{ paddingTop: '10px' }}>
