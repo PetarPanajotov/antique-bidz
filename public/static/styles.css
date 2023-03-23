@@ -4,6 +4,7 @@ html, body {
     height: 100%;
     box-sizing: border-box;
     font-family: "Roboto";
-    background-image: url(/image/background.jpg);
+    /* background-image: url(/image/background.jpg); */
+    background-color: #fff;
     background-size: cover;
 };
