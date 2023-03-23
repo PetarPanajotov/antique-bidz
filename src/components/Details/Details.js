@@ -5,7 +5,7 @@ import styles from "./Details.module.css"
 
 export function Details() {
     return (
-        <Container maxwidth='xl' sx={{ backgroundColor: '#FAEBD7', height: '100%' }}>
+        <Container maxwidth='xl'>
             <Grid container>
                 <Grid item xs={12} md={10} lg={8}>
                     <Box sx={{ paddingTop: '123px', textAlign: 'left' }}>
@@ -16,7 +16,7 @@ export function Details() {
                     <Box sx={{ width: '400px', paddingTop: 2 }}>
                         <Box>
                             <img
-                                src='https://images.thdstatic.com/productImages/5669f4a1-b700-4122-bc2e-881bccecd02a/svn/black-wood-yosemite-home-decor-wall-clocks-clkb2a147-64_1000.jpg'
+                                src='https://assets.architecturaldigest.in/photos/600847f3b3d78db39997d9ab/16:9/w_2560%2Cc_limit/featured-1366x768.jpg'
                                 alt='some'
                                 className={styles['card-image']}
                             ></img>
@@ -32,7 +32,7 @@ export function Details() {
                     </Box>
                 </Grid>
                 <Grid item xs={12} md = {6} lg={6}  sx= {{ paddingTop: 2}}>
-                    <Box sx={{ backgroundColor: 'gray' }}>
+                    <Box sx={{ backgroundColor: '#eeeeee' }}>
                         <Box sx={{ textAlign: 'right', paddingRight: '10px', paddingTop: '10px' }}>
                             <Typography variant="subtitle2">End in: 13:21:10</Typography>
                         </Box>
@@ -58,6 +58,17 @@ export function Details() {
                             </AccordionSummary>
                             <AccordionDetails>
                                 <Typography>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat a iste nemo exercitationem, alias mollitia illum maiores quia, fuga impedit perspiciatis tempore nostrum blanditiis maxime officiis quo, dolorum accusantium ducimus illo error saepe similique autem. Optio in eaque velit ipsam natus facere fugit, repellendus necessitatibus quis magnam praesentium a esse. Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat a iste nemo exercitationem, alias mollitia illum maiores quia, fuga impedit perspiciatis tempore nostrum blanditiis maxime officiis quo, dolorum accusantium ducimus illo error saepe similique autem. Optio in eaque velit ipsam natus facere fugit, repellendus necessitatibus quis magnam praesentium a esse Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat a iste nemo exercitationem, alias mollitia illum maiores quia, fuga impedit perspiciatis tempore nostrum blanditiis maxime officiis quo, dolorum accusantium ducimus illo error saepe similique autem. Optio in eaque velit ipsam natus facere fugit, repellendus necessitatibus quis magnam praesentium a esse</Typography>
+                            </AccordionDetails>
+                        </Accordion>
+                        <Accordion>
+                            <AccordionSummary
+                                expandIcon={<ExpandMoreIcon />}
+                            >
+                                <Typography>Highest Bids</Typography>
+                            </AccordionSummary>
+                            <AccordionDetails>
+                                <Typography>Veri - $520</Typography>
+                                <Typography>Meri - $510</Typography>
                             </AccordionDetails>
                         </Accordion>
                     </Box>
