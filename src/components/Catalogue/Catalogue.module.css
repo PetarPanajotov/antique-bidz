@@ -1,0 +1,29 @@
+.catalogue-container {
+    background-color: white;
+}
+
+.catalogue-search-wrapper {
+    text-align: center;
+}
+
+.catalogue-search-field {
+    margin-top: 82px;
+    background-color: white;
+    width: 60%;
+}
+.catalogue-search-icon {
+    color: blue;
+    margin-right: 4px;
+}
+.catalogue-clear-icon {
+    color: red;
+    cursor: pointer;
+}
+
+.catalogue-pagination-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 25px;
+    text-align: center;
+    padding-bottom: 75px;
+}
