@@ -1,0 +1,10 @@
+.container {
+    top: auto;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    background-color: #333333
+}
+.wrapper {
+    text-align: center
+}

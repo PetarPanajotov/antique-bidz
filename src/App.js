@@ -1,6 +1,7 @@
 import { Catalogue } from "./components/Catalogue/Catalogue";
 import { CreateBid } from "./components/CreateBid/CreateBid";
 import { Details } from "./components/Details/Details";
+import { Footer } from "./components/Footer/Footer";
 import { Header } from "./components/Header/Header";
 import { Home } from "./components/Home/Home";
 import { Login } from "./components/Login/Login";
@@ -17,6 +18,7 @@ function App() {
       <CreateBid></CreateBid>
       {/* <Login></Login> */}
       {/* <Register></Register> */}
+      <Footer></Footer>
     </>
   );
 }
