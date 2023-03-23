@@ -13,7 +13,8 @@ function App() {
       {/* <CreateBid></CreateBid> */}
       {/* <Home /> */}
       {/* <Catalogue></Catalogue> */}
-      <Details></Details>
+      {/* <Details></Details> */}
+      <CreateBid></CreateBid>
       {/* <Login></Login> */}
       {/* <Register></Register> */}
     </>
