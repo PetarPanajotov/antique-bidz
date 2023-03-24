@@ -6,7 +6,7 @@ export function DeleteBid() {
 
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
+    // const handleClose = () => setOpen(false);
 
     return (
         <StyledEngineProvider injectFirst>
