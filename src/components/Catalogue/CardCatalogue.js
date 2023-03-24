@@ -1,10 +1,9 @@
-import { Grid, Paper, Typography, StyledEngineProvider } from "@mui/material"
+import { Grid, Paper, Typography } from "@mui/material"
 import { Link } from "react-router-dom";
 import styles from './CardCatalogue.module.css'
 
 export function CardCatalogue() {
     return (
-        <StyledEngineProvider injectFirst>
             <Grid item xs={12} md={6} lg={3} >
                 <Link to={"/catalogue/details/2"} style={{ textDecoration: "none" }}>
                     <Paper className={styles['card-wrapper']}>
@@ -20,6 +19,5 @@ export function CardCatalogue() {
                     </Paper>
                 </Link>
             </Grid>
-        </StyledEngineProvider>
     );
 };

@@ -1,11 +1,10 @@
 import React from "react";
-import { Box, Button, Grid, Paper, TextField, Typography, Container, StyledEngineProvider } from "@mui/material";
+import { Box, Button, Grid, Paper, TextField, Typography, Container} from "@mui/material";
 import styles from "./CreateBid.module.css"
 
 
 export function CreateBid() {
     return (
-        <StyledEngineProvider injectFirst>
             <Container maxWidth='lg' className={styles['container']}>
                 <Paper elevation={23}>
                     <Box className={styles['text-wrapper']}>
@@ -50,7 +49,6 @@ export function CreateBid() {
                         </Grid>
                     </Grid>
                 </Paper>
-            </Container >
-        </StyledEngineProvider>
+            </Container>
     );
 };

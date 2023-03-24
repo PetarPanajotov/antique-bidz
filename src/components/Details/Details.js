@@ -1,12 +1,11 @@
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import { Accordion, AccordionDetails, AccordionSummary, Box, Button, Container, Grid, Typography, StyledEngineProvider } from "@mui/material"
+import { Accordion, AccordionDetails, AccordionSummary, Box, Button, Container, Grid, Typography } from "@mui/material"
 import { DeleteBid } from './Delete/Delete';
 import styles from "./Details.module.css"
 
 
 export function Details() {
     return (
-        <StyledEngineProvider injectFirst>
             <Container maxwidth='xl'>
                 <Grid container>
                     <Grid item xs={12} md={10} lg={8}>
@@ -83,7 +82,6 @@ export function Details() {
                         </Box>
                     </Grid>
                 </Grid>
-            </Container >
-        </StyledEngineProvider>
+            </Container>
     );
 };

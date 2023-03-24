@@ -1,3 +1,4 @@
+import { StyledEngineProvider } from "@mui/material";
 import { Routes, Route } from "react-router-dom";
 import { Catalogue } from "./components/Catalogue/Catalogue";
 import { CreateBid } from "./components/CreateBid/CreateBid";
@@ -12,18 +13,20 @@ import { Register } from "./components/Register/Register";
 function App() {
     return (
         <>
-            <Header />
-            <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/home" element={<Home />} />
-                <Route path="/catalogue" element={<Catalogue />} />
-                <Route path="/catalogue/details/:id" element={<Details />} />
-                <Route path="/create" element={<CreateBid />} />
-                <Route path="/login" element={<Login />} />
-                <Route path="/register" element={<Register />} />
-                <Route path="*" element={<NotFound />} />
-            </Routes>
-            <Footer></Footer>
+            <StyledEngineProvider injectFirst>
+                <Header />
+                <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/home" element={<Home />} />
+                    <Route path="/catalogue" element={<Catalogue />} />
+                    <Route path="/catalogue/details/:id" element={<Details />} />
+                    <Route path="/create" element={<CreateBid />} />
+                    <Route path="/login" element={<Login />} />
+                    <Route path="/register" element={<Register />} />
+                    <Route path="*" element={<NotFound />} />
+                </Routes>
+                <Footer />
+            </StyledEngineProvider>
         </>
     );
 }

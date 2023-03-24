@@ -1,10 +1,9 @@
-import { Box, Button, Container, Grid, StyledEngineProvider, Typography } from "@mui/material";
+import { Box, Button, Container, Grid, Typography } from "@mui/material";
 import { Card } from "./Card";
 import styles from './Home.module.css'
 
 export function Home() {
     return (
-        <StyledEngineProvider injectFirst>
             <Container maxWidth="lg" className={styles['home-container']}>
                 <Box className={styles['text-wrapper']}>
                     <Box paddingTop= {10}>
@@ -32,6 +31,5 @@ export function Home() {
                     </Grid>
                 </Box>
             </Container>
-        </StyledEngineProvider>
     );
 };

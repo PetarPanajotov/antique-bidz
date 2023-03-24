@@ -1,11 +1,9 @@
 import { LockOutlined } from "@mui/icons-material";
-import { Avatar, Box, Button, Paper, TextField, Typography } from "@mui/material";
-import { Container, StyledEngineProvider } from "@mui/system";
+import { Avatar, Box, Button, Paper, TextField, Typography, Container } from "@mui/material";
 import styles from './Login.module.css'
 
 export function Login() {
     return (
-        <StyledEngineProvider injectFirst>
             <Container maxWidth='xs'>
                 <Box className={styles['container']}>
                     <Paper elevation={11} className={styles['form-wrapper']}>
@@ -32,6 +30,5 @@ export function Login() {
                     </Paper>
                 </Box>
             </Container>
-        </StyledEngineProvider>
     );
 };

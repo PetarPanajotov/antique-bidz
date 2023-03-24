@@ -1,4 +1,4 @@
-import { Box, Button, Grid, Modal, Typography, StyledEngineProvider } from "@mui/material";
+import { Box, Button, Grid, Modal, Typography } from "@mui/material";
 import React from "react";
 import styles from './Delete.module.css';
 
@@ -9,7 +9,6 @@ export function DeleteBid() {
     // const handleClose = () => setOpen(false);
 
     return (
-        <StyledEngineProvider injectFirst>
             <Box>
                 <Button variant='contained' className={styles['button-delete']} onClick={handleOpen}>Delete</Button>
                 <Modal
@@ -32,6 +31,5 @@ export function DeleteBid() {
                     </Box>
                 </Modal>
             </Box>
-        </StyledEngineProvider>
     );
 };
