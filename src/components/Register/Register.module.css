@@ -1,12 +1,12 @@
 .container {
-    padding-top: 25vh;
+    padding-top: 35%;
     text-align: center;
     display: flex;
     justify-content: center;
 }
 
 .form-wrapper {
-    background-color: #FAEBD7;
+    background-color: white;
     flex-direction: column;
     width: 400px;
 }
@@ -18,25 +18,23 @@
 
 .avatar {
     margin: 1;
-    background-color: #333333;
+    background-color: purple;
 }
 
 .title-h3 {
-    color: #333333;
+    color: black;
 }
 
 .form-input {
     width: 300px;
-    color: red ;
 }
 
 .form-input :global .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
-    border-color: #333333;
-    color: red ;
+    border-color: purple;
     font-size: larger;
 }
 .form-input :global .MuiFormLabel-root {
-    color: #333333;
+    color: black;
     font-size: larger;
 }
 
