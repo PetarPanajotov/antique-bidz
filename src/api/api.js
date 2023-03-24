@@ -1,6 +1,4 @@
-import { getUserData } from "./util.js";
-
-const url = 'http://localhost:3030'
+const url = 'http://localhost:3030';
 async function api(method, endPoint, body) {
     const header = {
         method: method,
@@ -11,11 +9,10 @@ async function api(method, endPoint, body) {
     if (body !== undefined) {
         header['body'] = JSON.stringify(body);
     };
-    const user = getUserData();
 
-    if (user) {
-        header.headers['X-Authorization'] = user.accessToken;
-    };
+    // if (user) {
+    //     header.headers['X-Authorization'] = user.accessToken;
+    // };
 
     try {
         const response = await fetch(url + endPoint, header);
