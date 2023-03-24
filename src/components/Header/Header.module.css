@@ -1,0 +1,15 @@
+.container {
+    background-color: #333333;
+    margin-bottom: 11em;
+}
+.nav-links-wrapper {
+    display: flex;
+    margin-left: auto;
+}
+.nav-links {
+    color: white;
+    text-decoration: underline;
+    text-transform: none;
+    font-size: 1rem;
+    margin-right: 20px;
+}

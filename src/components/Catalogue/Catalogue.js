@@ -1,4 +1,4 @@
-import { Box, Button, Grid, Pagination, TextField, Typography, StyledEngineProvider, Container } from "@mui/material"
+import { Box, Grid, Pagination, TextField, StyledEngineProvider, Container } from "@mui/material"
 import SearchIcon from '@mui/icons-material/Search';
 import { CardCatalogue } from "./CardCatalogue"
 import ClearIcon from '@mui/icons-material/Clear';

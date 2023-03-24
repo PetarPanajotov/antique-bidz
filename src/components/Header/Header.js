@@ -1,43 +1,25 @@
-import { AppBar, Box, Toolbar, Typography } from "@mui/material";
+import { AppBar, Box, Toolbar, Typography, StyledEngineProvider } from "@mui/material";
 import { ElevationScroll } from "./ElevationScroll";
-
-const sxStyles = {
-    'header-nav': {
-        backgroundColor: '#333333',
-        marginBottom: '11em'
-    },
-    'header-tabs': {
-        display: 'flex',
-        marginLeft: 'auto'
-    },
-    'header-a': {
-        color: "white",
-        textDecoration: "underline",
-        textTransform: "none",
-        fontSize: "1rem",
-        marginRight: "20px"
-    }
-
-}
+import styles from "./Header.module.css"
 
 export function Header() {
     return (
-        <nav>
+        <StyledEngineProvider injectFirst>
             <ElevationScroll>
-                <AppBar sx={sxStyles['header-nav']}>
+                <AppBar className={styles['container']}>
                     <Toolbar disableGutters>
                         <Typography sx={{ textDecoration: 'underline' }}>AntiqueBidz</Typography>
-                        <Box sx={sxStyles['header-tabs']}>
-                            <a href="/home"><Typography sx={sxStyles["header-a"]}>Home</Typography></a>
-                            <a href="/catalog"><Typography sx={sxStyles["header-a"]}>Catalog</Typography></a>
-                            <a href="/login"><Typography sx={sxStyles["header-a"]}>Login</Typography></a>
-                            <a href="/register"><Typography sx={sxStyles["header-a"]}>Register</Typography></a>
-                            <a href="/logout"><Typography sx={sxStyles["header-a"]}>Logout</Typography></a>
-                            <a href="/about"><Typography sx={sxStyles["header-a"]}>About Us</Typography></a>
+                        <Box className={styles['nav-links-wrapper']}>
+                            <a href="/home"><Typography className={styles["nav-links"]}>Home</Typography></a>
+                            <a href="/catalog"><Typography className={styles["nav-links"]}>Catalog</Typography></a>
+                            <a href="/login"><Typography className={styles["nav-links"]}>Login</Typography></a>
+                            <a href="/register"><Typography className={styles["nav-links"]}>Register</Typography></a>
+                            <a href="/logout"><Typography className={styles["nav-links"]}>Logout</Typography></a>
+                            <a href="/about"><Typography className={styles["nav-links"]}>About Us</Typography></a>
                         </Box>
                     </Toolbar>
                 </AppBar>
             </ElevationScroll>
-        </nav>
+        </StyledEngineProvider>
     );
 };
