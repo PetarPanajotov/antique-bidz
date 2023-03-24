@@ -1,5 +1,5 @@
 import { LockOutlined } from "@mui/icons-material";
-import { Avatar, Box, Button, Grid, Paper, TextField, Typography } from "@mui/material";
+import { Avatar, Box, Button, Paper, TextField, Typography } from "@mui/material";
 import { Container, StyledEngineProvider } from "@mui/system";
 import styles from './Register.module.css'
 
@@ -31,7 +31,7 @@ export function Register() {
                                 <TextField className={styles['form-input']} id="filled-basic" label="Password" variant="outlined" />
                             </Box>
                             <Box paddingTop={2}>
-                                <TextField className={styles['form-input']} id="filled-basic" label="Repeat password" variant="outlined" />
+                                <TextField className={styles['form-input']} id="filled-basic" label="Repeat Password" variant="outlined" />
                             </Box>
                             <Box paddingTop={5}>
                                 <Button className={styles['form-button']} variant="contained">Sign up</Button>
