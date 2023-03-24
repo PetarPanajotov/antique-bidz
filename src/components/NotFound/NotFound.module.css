@@ -1,0 +1,22 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    text-align: center;
+    align-content: center;
+}
+.img-wrapper {
+    width: 300px;
+    margin: 0 auto;
+}
+.img {
+    width: 100%;
+    display: block;
+}
+.text {
+    font-family: "Copperplate";
+}
+.button-wrapper {
+    padding-top: 20px;
+}
