@@ -1,18 +1,19 @@
 const url = 'http://localhost:3030';
-async function api(method, endPoint, body) {
+
+async function api(method, endPoint, body, token) {
     const header = {
         method: method,
         headers: {
             'Content-Type': 'application/json'
         }
     };
-    if (body !== undefined) {
+    if (body) {
         header['body'] = JSON.stringify(body);
     };
-
-    // if (user) {
-    //     header.headers['X-Authorization'] = user.accessToken;
-    // };
+    
+    if (token) {
+        header.headers['X-Authorization'] = token;
+    };
 
     try {
         const response = await fetch(url + endPoint, header);

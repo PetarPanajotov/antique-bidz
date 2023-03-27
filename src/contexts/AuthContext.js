@@ -1,5 +1,6 @@
 import { createContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { logout } from "../services/authService";
 
 export const AuthContext = createContext();
 
@@ -10,16 +11,17 @@ export function AuthProvider({ children }) {
 
     const user = auth.accessToken? true: false;
 
-    const logout = () => {
+    const onLogout = () => {
+        logout(auth.accessToken);
         setAuth({});
-        navigate('/')
+        navigate('/');
     };
 
     const ctx = {
         auth,
         setAuth,
         user,
-        logout
+        onLogout
     };
 
     return (
