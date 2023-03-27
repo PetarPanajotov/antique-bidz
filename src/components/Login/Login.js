@@ -39,7 +39,7 @@ export function Login() {
                         <Box paddingTop={5}>
                             <TextField
                                 className={styles['form-input']}
-                                label="Email"
+                                label={<span className={styles['form-input-label']}>Email</span>}
                                 variant="outlined"
                                 name="email"
                                 value={formValues.email}
@@ -47,9 +47,10 @@ export function Login() {
                             />
                         </Box>
                         <Box paddingTop={2}>
-                            <TextField className={styles['form-input']}
+                            <TextField 
+                                className={styles['form-input']}
                                 type='password'
-                                label="Password"
+                                label={<span className={styles['form-input-label']}>Password</span>}
                                 variant="outlined"
                                 name="password"
                                 value={formValues.password}
