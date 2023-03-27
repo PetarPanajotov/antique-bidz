@@ -16,15 +16,17 @@ async function api(method, endPoint, body) {
 
     try {
         const response = await fetch(url + endPoint, header);
-        if (response.status == 204) {
+
+        if (response.status === 204) {
             return response;
         };
 
         const data = await response.json();
+
         if (!response.ok) {
             throw new Error(data.message);
         };
-        
+
         return data;
     }
     catch (error) {
