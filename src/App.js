@@ -9,23 +9,26 @@ import { Home } from "./components/Home/Home";
 import { Login } from "./components/Login/Login";
 import { NotFound } from "./components/NotFound/NotFound";
 import { Register } from "./components/Register/Register";
+import { AuthProvider } from "./contexts/AuthContext";
 
 function App() {
     return (
         <>
             <StyledEngineProvider injectFirst>
-                <Header />
-                <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/home" element={<Home />} />
-                    <Route path="/catalogue" element={<Catalogue />} />
-                    <Route path="/catalogue/details/:id" element={<Details />} />
-                    <Route path="/create" element={<CreateBid />} />
-                    <Route path="/login" element={<Login />} />
-                    <Route path="/register" element={<Register />} />
-                    <Route path="*" element={<NotFound />} />
-                </Routes>
-                <Footer />
+                <AuthProvider>
+                    <Header />
+                    <Routes>
+                        <Route path="/" element={<Home />} />
+                        <Route path="/home" element={<Home />} />
+                        <Route path="/catalogue" element={<Catalogue />} />
+                        <Route path="/catalogue/details/:id" element={<Details />} />
+                        <Route path="/create" element={<CreateBid />} />
+                        <Route path="/login" element={<Login />} />
+                        <Route path="/register" element={<Register />} />
+                        <Route path="*" element={<NotFound />} />
+                    </Routes>
+                    <Footer />
+                </AuthProvider>
             </StyledEngineProvider>
         </>
     );
