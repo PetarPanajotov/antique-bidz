@@ -32,11 +32,12 @@
 
 .form-input :global .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
     border-color: purple;
-    font-size: larger;
 }
 .form-input :global .MuiFormLabel-root {
     color: black;
-    font-size: larger;
+}
+.form-input-label {
+    font-size: 1.5em;
 }
 
 .form-button {
