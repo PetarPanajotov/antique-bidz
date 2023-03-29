@@ -1,23 +1,37 @@
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { Accordion, AccordionDetails, AccordionSummary, Box, Button, Container, Grid, Typography } from "@mui/material"
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { useRemainingTime } from '../../hooks/useRemainingTime';
+import { getOne } from '../../services/antiqueService';
+import { dateConvert } from '../../utils/dateUtil';
 import { DeleteBid } from './Delete/Delete';
-import styles from "./Details.module.css"
-
+import styles from "./Details.module.css";
 
 export function Details() {
+    const [antiqueDetails, setAntiqueDetails] = useState({});
+    const {formattedTime, setRemainingTime} = useRemainingTime(dateConvert(antiqueDetails.bidDetails?.endDate));
+    const params = useParams();
+    
+    useEffect(() => {
+        getOne(params.id).then(data => {
+            setRemainingTime(dateConvert(data.bidDetails.endDate))
+            setAntiqueDetails(data)})
+    }, [params.id]);
+
     return (
             <Container maxwidth='xl'>
                 <Grid container>
                     <Grid item xs={12} md={10} lg={8}>
                         <Box className={styles['title']}>
-                            <Typography variant="h4">Item name here</Typography>
+                            <Typography variant="h4">{antiqueDetails.name}</Typography>
                         </Box>
                     </Grid>
                     <Grid item xs={12} md={6} lg={6}>
                         <Box className={styles['left-side-wrapper']}>
                             <Box>
                                 <img
-                                    src='https://assets.architecturaldigest.in/photos/600847f3b3d78db39997d9ab/16:9/w_2560%2Cc_limit/featured-1366x768.jpg'
+                                    src={antiqueDetails.imgURL}
                                     alt='some'
                                     className={styles['card-image']}
                                 ></img>
@@ -26,23 +40,23 @@ export function Details() {
                                 <Typography variant="h5">Categories:</Typography>
                             </Box>
                             <Box className={styles['categories-button-wrapper']}>
-                                <Button variant="contained" className={styles['category-button']}>Furniture</Button>
+                                <Button variant="contained" className={styles['category-button']}>{antiqueDetails.category}</Button>
                                 <Typography variant="h5">&#62;</Typography>
-                                <Button variant="contained" className={styles['subcategory-button']}>Sofa</Button>
+                                <Button variant="contained" className={styles['subcategory-button']}>{antiqueDetails.subCategory}</Button>
                             </Box>
                         </Box>
                     </Grid>
                     <Grid item xs={12} md={6} lg={6} className={styles['right-side-wrapper']}>
                         <Box className={styles['offer-information-wrapper']}>
                             <Box className={styles['end-time']}>
-                                <Typography variant="subtitle2">End in: 13:21:10</Typography>
+                                <Typography variant="subtitle2">End in: {formattedTime}</Typography>
                             </Box>
                             <Box className={styles['price-wrapper']}>
                                 <Box>
                                     <Typography variant="subtitle1">Price:</Typography>
                                 </Box>
                                 <Box>
-                                    <Typography variant="h5">$525.00</Typography>
+                                    <Typography variant="h5">${antiqueDetails.bidDetails?.startBid}</Typography>
                                 </Box>
                             </Box>
                             <Box className={styles['bid-button-wrapper']}>
@@ -60,7 +74,7 @@ export function Details() {
                                     <Typography>Description</Typography>
                                 </AccordionSummary>
                                 <AccordionDetails>
-                                    <Typography>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat a iste nemo exercitationem, alias mollitia illum maiores quia, fuga impedit perspiciatis tempore nostrum blanditiis maxime officiis quo, dolorum accusantium ducimus illo error saepe similique autem. Optio in eaque velit ipsam natus facere fugit, repellendus necessitatibus quis magnam praesentium a esse. Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat a iste nemo exercitationem, alias mollitia illum maiores quia, fuga impedit perspiciatis tempore nostrum blanditiis maxime officiis quo, dolorum accusantium ducimus illo error saepe similique autem. Optio in eaque velit ipsam natus facere fugit, repellendus necessitatibus quis magnam praesentium a esse Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat a iste nemo exercitationem, alias mollitia illum maiores quia, fuga impedit perspiciatis tempore nostrum blanditiis maxime officiis quo, dolorum accusantium ducimus illo error saepe similique autem. Optio in eaque velit ipsam natus facere fugit, repellendus necessitatibus quis magnam praesentium a esse</Typography>
+                                    <Typography>{antiqueDetails.description}</Typography>
                                 </AccordionDetails>
                             </Accordion>
                             <Accordion>
