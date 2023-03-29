@@ -3,16 +3,11 @@ import SearchIcon from '@mui/icons-material/Search';
 import { CardCatalogue } from "./CardCatalogue"
 import ClearIcon from '@mui/icons-material/Clear';
 import styles from './Catalogue.module.css'
-import { useEffect, useState } from "react";
-import { getAll } from "../../services/antiqueService";
+import { useContext } from "react";
+import { AntiqueContext } from "../../contexts/AntiqueContext";
 
 export function Catalogue() {
-    const [antiqueData, setAntiqueData] = useState([]);
-
-    useEffect(() => {
-        getAll().then(data =>
-            setAntiqueData(Object.values(data)))
-    }, []);
+   const {antiqueData} = useContext(AntiqueContext)
 
     
     return (
