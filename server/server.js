@@ -1343,10 +1343,10 @@
             "8b80d196-c3f1-11ed-afa1-0242ac120002": {
                 _id: '8b80d196-c3f1-11ed-afa1-0242ac120002',
                 _ownerId: '847ec027-f659-4086-8032-5173e2f9c93a',
-                name: 'Antique Rhode Island Tavern Table',
+                antiqueName: 'Antique Rhode Island Tavern Table',
                 imgURL: 'https://dn9ml16rd2hb8.cloudfront.net/2023/03/94-3583-Rhode-Island-Tavern-Table-A-IMG_9494-319x405.jpg',
                 category: 'Furnitures',
-                subCategory: 'Table',
+                subCategory: 'Tables',
                 bidDetails: {
                     startBid: 115,
                     endDate: '29 March 2023'
@@ -1356,10 +1356,10 @@
             "1b85196-c3f1-11fd-afa4-0242ac120321": {
                 _id: '1b85196-c3f1-11fd-afa4-0242ac120321',
                 _ownerId: '35c62d76-8152-4626-8712-eeb96381bea8',
-                name: 'Mellie Cooper Acrylic on Hand Made Paper “Allied Flags Surrounding a Clipper Ship Cartouche',
+                antiqueName: 'Mellie Cooper Acrylic on Hand Made Paper “Allied Flags Surrounding a Clipper Ship Cartouche',
                 imgURL: 'https://dn9ml16rd2hb8.cloudfront.net/2022/11/6-5223-Mellie-Cooper-Acrylic-of-Clipper-Ship-A_IMG_6166-517x405.jpg',
                 category: 'Fine Arts',
-                subCategory: 'Maritime Art',
+                subCategory: 'Paintings',
                 bidDetails: {
                     startBid: 315,
                     endDate: '30 March 2023'
@@ -1369,10 +1369,10 @@
             "1585196-c3f1-1132-afa7-0322ac120321": {
                 _id: '1585196-c3f1-1132-afa7-0322ac120321',
                 _ownerId: '35c62d76-8152-4626-8712-eeb96381bea8',
-                name: 'Antique American Folk Art Four-Drawer Salesman Sample Chest of Drawers',
+                antiqueName: 'Antique American Folk Art Four-Drawer Salesman Sample Chest of Drawers',
                 imgURL: 'https://dn9ml16rd2hb8.cloudfront.net/2023/03/3131-955-Miniature-Chest-A-380x405.jpg',
                 category: 'Furniture',
-                subCategory: 'Drawer',
+                subCategory: 'Chests',
                 bidDetails: {
                     startBid: 1115,
                     endDate: '30 March 2023'

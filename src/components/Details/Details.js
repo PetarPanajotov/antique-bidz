@@ -24,7 +24,7 @@ export function Details() {
                 <Grid container>
                     <Grid item xs={12} md={10} lg={8}>
                         <Box className={styles['title']}>
-                            <Typography variant="h4">{antiqueDetails.name}</Typography>
+                            <Typography variant="h4">{antiqueDetails.antiqueName}</Typography>
                         </Box>
                     </Grid>
                     <Grid item xs={12} md={6} lg={6}>

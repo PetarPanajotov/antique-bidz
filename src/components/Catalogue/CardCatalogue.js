@@ -16,7 +16,7 @@ export function CardCatalogue({ antique }) {
                         alt='some'
                         className={styles['card-image']}
                     ></img>
-                    <Typography variant="h6">{antique.name}</Typography>
+                    <Typography variant="h6">{antique.antiqueName}</Typography>
                     <Typography variant="subtitle1">Current Bid</Typography>
                     <Typography variant="h5">${antique.bidDetails.startBid}</Typography>
                     <Typography paddingTop={2}>End in: {formattedTime}</Typography>
