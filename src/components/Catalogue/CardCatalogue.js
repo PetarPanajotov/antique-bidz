@@ -1,30 +1,11 @@
 import { Grid, Paper, Typography } from "@mui/material"
-import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { useRemainingTime } from "../../hooks/useRemainingTime";
 import { dateConvert } from "../../utils/dateUtil";
-import styles from './CardCatalogue.module.css'
+import styles from './CardCatalogue.module.css';
 
 export function CardCatalogue({ antique }) {
-    const [remainingTime, setRemainingTime] = useState(dateConvert(antique.bidDetails.endDate));
-
-    useEffect(() => {
-        const interval = setInterval(() => {
-            let [hours, minutes, seconds] = remainingTime;
-            if (seconds === 0) {
-                minutes--;
-                seconds = 60;
-            }
-            if (minutes === 0) {
-                hours--;
-                minutes = 59;
-            }
-            seconds--;
-            setRemainingTime([hours, minutes, seconds]);
-        }, 1000);
-        return () => clearInterval(interval);
-    }, [remainingTime]);
-
-    const formattedTime = `${remainingTime[0].toString().padStart(2, "0")}:${remainingTime[1].toString().padStart(2, "0")}:${remainingTime[2].toString().padStart(2, "0")}`;
+    const {formattedTime} = useRemainingTime(dateConvert(antique.bidDetails.endDate));
 
     return (
         <Grid item xs={12} md={6} lg={3} >
