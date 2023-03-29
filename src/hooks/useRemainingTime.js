@@ -22,5 +22,5 @@ export function useRemainingTime(initialDate) {
 
     const formattedTime = `${remainingTime[0].toString().padStart(2, "0")}:${remainingTime[1].toString().padStart(2, "0")}:${remainingTime[2].toString().padStart(2, "0")}`;
 
-    return {formattedTime};
+    return {formattedTime, setRemainingTime};
 };
