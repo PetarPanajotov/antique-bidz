@@ -1,29 +1,34 @@
 import { createContext, useState, useEffect } from "react";
-import { getAll } from "../services/antiqueService";
+import { getAll, getCollectionSize } from "../services/antiqueService";
 
 export const AntiqueContext = createContext();
 
 export function AntiqueProvider({ children }) {
     const [antiqueData, setAntiqueData] = useState([]);
-    const [antiqueDataPagination, setAntiqueDataPagintation] = useState([])
+    const [collectionCount, setCollectionCount] = useState(0);
+    const [page, setPage] = useState(1);
+    const [query, setQuery] = useState({offset: 0});
 
     useEffect(() => {
-        getAll().then(data =>
-            setAntiqueData(Object.values(data)))
-    }, []);
-    useEffect(() => {
-            setAntiqueDataPagintation(antiqueData.slice(0, 8))
-    }, [antiqueData]);
+        getAll(query.offset).then(data => {
+            setAntiqueData(Object.values(data));
+        })
+    }, [query.offset, query.pageSize]);
 
-    function getSome(from, to) {
-        return setAntiqueDataPagintation(antiqueData.slice(from, to))
-    };
+    useEffect(() => {
+        getCollectionSize().then(num => {
+            setCollectionCount(num);
+        });
+    },[]);
 
     const ctx = {
         antiqueData,
         setAntiqueData,
-        antiqueDataPagination,
-        getSome
+        collectionCount,
+        setCollectionCount,
+        page, 
+        setPage,
+        setQuery
     };
 
     return (
