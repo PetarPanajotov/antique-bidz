@@ -1,4 +1,4 @@
-import { GET, POST } from "./requester";
+import { DEL, GET, POST } from "./requester";
 
 export function getAll(offset) {
     const pageSize = 8;
@@ -6,9 +6,12 @@ export function getAll(offset) {
     const sortQuery = encodeURI(`?sortBy=_createdOn desc`);
     return GET(`/data/antiques${sortQuery}&${query}`);
 };
+export function deleteOne(id, token) {
+    return DEL(`/data/antiques/${id}`, '', token)
+};
 export function getCollectionSize() {
     return GET(`/data/antiques?count`)
-}
+};
 export function getOne(id) {
     return GET(`/data/antiques/${id}`);
 };

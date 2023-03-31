@@ -29,7 +29,13 @@ export function AntiqueProvider({ children }) {
         });
     }, []);
 
+    const onDeleteAntique = (antiqueId) => {
+        setAntiqueData(state => state.filter(antique => antique._id !== antiqueId));
+        setCollectionCount(state => state--);
+    };
+
     const ctx = {
+        onDeleteAntique,
         antiqueData,
         setAntiqueData,
         collectionCount,
@@ -44,4 +50,4 @@ export function AntiqueProvider({ children }) {
             {children}
         </AntiqueContext.Provider>
     );
-}
+};
