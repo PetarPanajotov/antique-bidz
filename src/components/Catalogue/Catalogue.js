@@ -3,16 +3,11 @@ import SearchIcon from '@mui/icons-material/Search';
 import { CardCatalogue } from "./CardCatalogue"
 import ClearIcon from '@mui/icons-material/Clear';
 import styles from './Catalogue.module.css'
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { AntiqueContext } from "../../contexts/AntiqueContext";
 
 export function Catalogue() {
     const { antiqueData, collectionCount, setQuery, setPage } = useContext(AntiqueContext);
-
-    //upon loading the catalog, to reset the page 
-    useEffect(() => {
-        setQuery({ offset: 0 });
-    }, [setQuery]);
 
     function handlePaginationChange(e, value) {
         setPage(value);
