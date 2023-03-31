@@ -12,7 +12,7 @@ import { AntiqueContext } from "../../contexts/AntiqueContext";
 export function CreateBid() {
     const navigate = useNavigate();
     const {auth} = useContext(AuthContext);
-    const { setAntiqueData } = useContext(AntiqueContext);
+    const { setAntiqueData, setCollectionCount } = useContext(AntiqueContext);
     const { formValues, onChange } = useForm({
         antiqueName: '',
         imgURL: '',
@@ -35,8 +35,15 @@ export function CreateBid() {
 
     const onSubmit = async(e) => {
         e.preventDefault();
-        await postCreate(formValues, auth.accessToken);
-        setAntiqueData(state => [ ...state, formValues])
+        const data = await postCreate(formValues, auth.accessToken);
+        setAntiqueData(state => {
+            const newState = [ ...state];
+            newState.unshift(data);
+            newState.pop();
+            return newState;
+        });
+        //fix this
+        setCollectionCount(state => state++);
         navigate('/catalogue');
     };
 
