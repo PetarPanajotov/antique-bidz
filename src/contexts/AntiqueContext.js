@@ -1,5 +1,5 @@
 import { createContext, useState, useEffect } from "react";
-import { getAll, getCollectionSize } from "../services/antiqueService";
+import { getAll, getBySearch, getCollectionSize } from "../services/antiqueService";
 import { useLocation } from "react-router-dom";
 
 export const AntiqueContext = createContext();
@@ -7,27 +7,43 @@ export const AntiqueContext = createContext();
 export function AntiqueProvider({ children }) {
     const [antiqueData, setAntiqueData] = useState([]);
     const [collectionCount, setCollectionCount] = useState(0);
-    const [page, setPage] = useState(1);
+    const [isSearchUndefined, setIsSearchUndefined] = useState(true);
     const [query, setQuery] = useState({ offset: 0 });
+
     const location = useLocation();
-     
+
+    const onSearchSubmit = async (e, searchValue) => {
+        e.preventDefault();
+        if (!searchValue) {
+            return
+        };
+        const data = await getBySearch(searchValue);
+        setAntiqueData(Object.values(data));
+        setCollectionCount(antiqueData.length);
+    };
+
     useEffect(() => {
         if (location.pathname !== 'catalog')
+            setIsSearchUndefined(true);
             setQuery({ offset: 0 });
     }, [location.pathname]);
 
     useEffect(() => {
-        getAll(query.offset).then(data => {
-            setAntiqueData(Object.values(data));
-        })
-    }, [query.offset]);
-    
+        if (isSearchUndefined) {
+            getAll(query.offset).then(data => {
+                setAntiqueData(Object.values(data));
+            })
+        }
+    }, [query.offset, isSearchUndefined]);
+
 
     useEffect(() => {
-        getCollectionSize().then(num => {
-            setCollectionCount(num);
-        });
-    }, []);
+        if (isSearchUndefined) {
+            getCollectionSize().then(num => {
+                setCollectionCount(num);
+            });
+        }
+    }, [isSearchUndefined]);
 
     const onDeleteAntique = (antiqueId) => {
         setAntiqueData(state => state.filter(antique => antique._id !== antiqueId));
@@ -40,9 +56,9 @@ export function AntiqueProvider({ children }) {
         setAntiqueData,
         collectionCount,
         setCollectionCount,
-        page,
-        setPage,
-        setQuery
+        setQuery,
+        setIsSearchUndefined,
+        onSearchSubmit,
     };
 
     return (
