@@ -10,7 +10,10 @@ export function AntiqueProvider({ children }) {
     const [isSearchUndefined, setIsSearchUndefined] = useState(true);
     const [search, setSearch] = useState('');
     const [pagination, setPagination] = useState({ offset: 0, page: 1 });
-    
+
+    const resetPaginationState = () => {
+        setPagination(state => ({ ...state, offset: 0, page: 1 }));
+    };
 
     const location = useLocation();
 
@@ -19,31 +22,32 @@ export function AntiqueProvider({ children }) {
         if (!searchValue) {
             return;
         };
-        setPagination(state => ({...state, offset: 0, page: 1 }))
+        resetPaginationState();
         setIsSearchUndefined(false);
         setSearch(searchValue);
     };
 
     useEffect(() => {
-        if (location.pathname !== 'catalog')
+        if (location.pathname !== '/catalog') {
             setIsSearchUndefined(true);
-            setPagination(state => ({...state, offset: 0, page: 1 }))
+            resetPaginationState();
+        }
     }, [location.pathname]);
 
     useEffect(() => {
         if (isSearchUndefined) {
             Promise.all([getAll(pagination.offset), getCollectionSize()])
-            .then(response => {
-                const [data, count] = response
-                setAntiqueData(Object.values(data));
-                setCollectionCount(count)
-            })
+                .then(response => {
+                    const [data, count] = response;
+                    setAntiqueData(Object.values(data));
+                    setCollectionCount(count);
+                });
         } else {
             getBySearch(search, pagination.offset).then(response => {
-                const {data, count} = response;
+                const { data, count } = response;
                 setAntiqueData(Object.values(data));
                 setCollectionCount(count);
-            })
+            });
         }
     }, [pagination.offset, isSearchUndefined, search]);
 
@@ -52,14 +56,15 @@ export function AntiqueProvider({ children }) {
         setCollectionCount(state => state--);
     };
 
+
     const ctx = {
         onDeleteAntique,
         antiqueData,
         setAntiqueData,
         collectionCount,
         setCollectionCount,
-        setPagination,
         pagination,
+        setPagination,
         setIsSearchUndefined,
         onSearchSubmit,
     };
