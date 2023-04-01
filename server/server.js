@@ -1344,6 +1344,7 @@
             "8b80d196-c3f1-11ed-afa1-0242ac120002": {
                 _id: '8b80d196-c3f1-11ed-afa1-0242ac120002',
                 _ownerId: '847ec027-f659-4086-8032-5173e2f9c93a',
+                _createdOn: 1613551388703,
                 antiqueName: 'Antique Rhode Island Tavern Table',
                 imgURL: 'https://dn9ml16rd2hb8.cloudfront.net/2023/03/94-3583-Rhode-Island-Tavern-Table-A-IMG_9494-319x405.jpg',
                 category: 'Furnitures',
@@ -1357,6 +1358,7 @@
             "1b85196-c3f1-11fd-afa4-0242ac120321": {
                 _id: '1b85196-c3f1-11fd-afa4-0242ac120321',
                 _ownerId: '35c62d76-8152-4626-8712-eeb96381bea8',
+                _createdOn: 1613551388713,
                 antiqueName: 'Mellie Cooper Acrylic on Hand Made Paper “Allied Flags Surrounding a Clipper Ship Cartouche',
                 imgURL: 'https://dn9ml16rd2hb8.cloudfront.net/2022/11/6-5223-Mellie-Cooper-Acrylic-of-Clipper-Ship-A_IMG_6166-517x405.jpg',
                 category: 'Fine Arts',
@@ -1370,6 +1372,7 @@
             "1585196-c3f1-1132-afa7-0322ac120321": {
                 _id: '1585196-c3f1-1132-afa7-0322ac120321',
                 _ownerId: '35c62d76-8152-4626-8712-eeb96381bea8',
+                _createdOn: 1613551388723,
                 antiqueName: 'Antique American Folk Art Four-Drawer Salesman Sample Chest of Drawers',
                 imgURL: 'https://dn9ml16rd2hb8.cloudfront.net/2023/03/3131-955-Miniature-Chest-A-380x405.jpg',
                 category: 'Furniture',
@@ -1383,6 +1386,7 @@
             "8b80d296-c3f1-11ed-afa1-0242ac120002": {
                 _id: '8b80d296-c3f1-11ed-afa1-0242ac120002',
                 _ownerId: '847ec027-f659-4086-8032-5173e2f9c93a',
+                _createdOn: 1613551388733,
                 antiqueName: 'Antique Rhode Island Tavern Table',
                 imgURL: 'https://dn9ml16rd2hb8.cloudfront.net/2023/03/94-3583-Rhode-Island-Tavern-Table-A-IMG_9494-319x405.jpg',
                 category: 'Furnitures',
@@ -1396,6 +1400,7 @@
             "1b86196-c3f1-11fd-afa4-0242ac120321": {
                 _id: '1b86196-c3f1-11fd-afa4-0242ac120321',
                 _ownerId: '35c62d76-8152-4626-8712-eeb96381bea8',
+                _createdOn: 1613551388743,
                 antiqueName: 'Mellie Cooper Acrylic on Hand Made Paper “Allied Flags Surrounding a Clipper Ship Cartouche',
                 imgURL: 'https://dn9ml16rd2hb8.cloudfront.net/2022/11/6-5223-Mellie-Cooper-Acrylic-of-Clipper-Ship-A_IMG_6166-517x405.jpg',
                 category: 'Fine Arts',
@@ -1409,6 +1414,7 @@
             "1515196-c3f1-1132-afa7-0322ac120321": {
                 _id: '1515196-c3f1-1132-afa7-0322ac120321',
                 _ownerId: '35c62d76-8152-4626-8712-eeb96381bea8',
+                _createdOn: 1613551388753,
                 antiqueName: 'Antique American Folk Art Four-Drawer Salesman Sample Chest of Drawers',
                 imgURL: 'https://dn9ml16rd2hb8.cloudfront.net/2023/03/3131-955-Miniature-Chest-A-380x405.jpg',
                 category: 'Furniture',
@@ -1422,6 +1428,7 @@
             "1515196-c3f1-1182-afa7-0322ac120321": {
                 _id: '1515196-c3f1-1182-afa7-0322ac120321',
                 _ownerId: '35c62d76-8152-4626-8712-eeb96381bea8',
+                _createdOn: 1613551388763,
                 antiqueName: 'Antique American Folk Art Four-Drawer Salesman Sample Chest of Drawers',
                 imgURL: 'https://dn9ml16rd2hb8.cloudfront.net/2023/03/3131-955-Miniature-Chest-A-380x405.jpg',
                 category: 'Furniture',
@@ -1435,6 +1442,7 @@
             "1515196-c3f1-1182-afa7-0322ac121321": {
                 _id: '1515196-c3f1-1182-afa7-0322ac121321',
                 _ownerId: '35c62d76-8152-4626-8712-eeb96381bea8',
+                _createdOn: 1613551388773,
                 antiqueName: 'Antique American Folk Art Four-Drawer Salesman Sample Chest of Drawers',
                 imgURL: 'https://dn9ml16rd2hb8.cloudfront.net/2023/03/3131-955-Miniature-Chest-A-380x405.jpg',
                 category: 'Furniture',
@@ -1448,6 +1456,7 @@
             "1515196-c3f1-1182-afa7-5322ac120321": {
                 _id: '1515196-c3f1-1182-afa7-5322ac120321',
                 _ownerId: '35c62d76-8152-4626-8712-eeb96381bea8',
+                _createdOn: 1613551388783,
                 antiqueName: 'Antique American Folk Art Four-Drawer Salesman Sample Chest of Drawers',
                 imgURL: 'https://dn9ml16rd2hb8.cloudfront.net/2023/03/3131-955-Miniature-Chest-A-380x405.jpg',
                 category: 'Furniture',
