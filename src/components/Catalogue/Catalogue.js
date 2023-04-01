@@ -7,7 +7,7 @@ import { useContext, useState } from "react";
 import { AntiqueContext } from "../../contexts/AntiqueContext";
 
 export function Catalogue() {
-    const { antiqueData, collectionCount, setQuery, onSearchSubmit, setIsSearchUndefined } = useContext(AntiqueContext);
+    const { antiqueData, collectionCount, setPagination, onSearchSubmit, setIsSearchUndefined, pagination} = useContext(AntiqueContext);
     const [searchValue, setSearchValue] = useState('');
 
     function onChange(e) {
@@ -15,17 +15,16 @@ export function Catalogue() {
         if(!e.target.value) {
             return setIsSearchUndefined(true);
         };
-        setIsSearchUndefined(false);
     };
+
     function onXClick(e) {
-        debugger;
         e.target.value = '';
         setSearchValue('');
-        setIsSearchUndefined(true)
+        setIsSearchUndefined(true);
     }
 
     function handlePaginationChange(e, value) {
-        return setQuery(state => ({ ...state, offset: (value - 1) * 8 }));
+        return setPagination(state => ({ ...state, offset: (value - 1) * 8, page: value}));
     };
 
     return (
@@ -37,11 +36,10 @@ export function Catalogue() {
                         name="searchQuery"
                         value={searchValue}
                         onChange={onChange}
-                        autoComplete="off"
                         className={styles['catalogue-search-field']}
                         InputProps={{
-                            startAdornment: <SearchIcon className={styles['catalogue-search-icon']} onClick={(e) => onSearchSubmit(e, searchValue)}></SearchIcon>,
-                            endAdornment: <ClearIcon className={styles['catalogue-clear-icon']} onClick={onXClick}></ClearIcon>
+                            startAdornment: <SearchIcon className={styles['catalogue-search-icon']} onClick={(e) => onSearchSubmit(e)}></SearchIcon>,
+                            endAdornment: searchValue && (<ClearIcon className={styles['catalogue-clear-icon']} onClick={onXClick}></ClearIcon>)
                         }} />
                 </form>
             </Box>
@@ -53,6 +51,7 @@ export function Catalogue() {
                 <Pagination
                     count={Math.ceil(collectionCount / 8)}
                     onChange={handlePaginationChange}
+                    page={pagination.page}
                 />
             </Box>
         </Container>

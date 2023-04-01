@@ -1,17 +1,21 @@
 import { DEL, GET, POST } from "./requester";
 
+const pageSize = 8;
 export function getAll(offset) {
-    const pageSize = 8;
     const sortQuery = encodeURI(`?sortBy=_createdOn desc`);
-    const query = encodeURI(`offset=${offset}&pageSize=${pageSize}`);
-    return GET(`/data/antiques${sortQuery}&${query}`);
+    const paginationQuary = encodeURI(`offset=${offset}&pageSize=${pageSize}`);
+    return GET(`/data/antiques${sortQuery}&${paginationQuary}`);
 };
 export function deleteOne(id, token) {
     return DEL(`/data/antiques/${id}`, '', token)
 };
-export function getBySearch(query) {
-    const searchQuery = encodeURI(`?where=antiqueName LIKE "${query}"`);
-    return GET(`/data/antiques${searchQuery}`);
+export async function getBySearch(query, offset) {
+    const sortQuery = encodeURI(`?sortBy=_createdOn desc`);
+    const searchQuery = encodeURI(`where=antiqueName LIKE "${query}"`);
+    const paginationQuery = encodeURI(`offset=${offset}&pageSize=${pageSize}`);
+    const data = await GET(`/data/antiques${sortQuery}&${searchQuery}&${paginationQuery}`);
+    const count = await GET(`/data/antiques?${searchQuery}&count`);
+    return {data, count};
 };
 export function getCollectionSize() {
     return GET(`/data/antiques?count`)
