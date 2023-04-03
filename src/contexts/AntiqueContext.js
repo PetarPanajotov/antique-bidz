@@ -1,6 +1,6 @@
 import { createContext, useState, useEffect } from "react";
-import { getAll, getBySearch, getCollectionSize } from "../services/antiqueService";
-import { useLocation } from "react-router-dom";
+import { getAll, getBySearch, getCollectionSize, putEdit } from "../services/antiqueService";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export const AntiqueContext = createContext();
 
@@ -10,6 +10,7 @@ export function AntiqueProvider({ children }) {
     const [isSearchUndefined, setIsSearchUndefined] = useState(true);
     const [search, setSearch] = useState('');
     const [pagination, setPagination] = useState({ offset: 0, page: 1 });
+    const navigate = useNavigate();
 
     const resetPaginationState = () => {
         setPagination(state => ({ ...state, offset: 0, page: 1 }));
@@ -56,6 +57,12 @@ export function AntiqueProvider({ children }) {
         setCollectionCount(state => state--);
     };
 
+    const onEditAntiqueSubmit = async(e, antiqueId, data, token) => {
+        e.preventDefault();
+        const editedValues = await putEdit(antiqueId, data, token);
+        setAntiqueData(state => state.map(x => x._id === antiqueId ? editedValues: x));
+        navigate(`/catalogue/details/${antiqueId}`);
+    };
 
     const ctx = {
         onDeleteAntique,
@@ -67,6 +74,7 @@ export function AntiqueProvider({ children }) {
         setPagination,
         setIsSearchUndefined,
         onSearchSubmit,
+        onEditAntiqueSubmit
     };
 
     return (

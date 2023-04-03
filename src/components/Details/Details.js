@@ -1,7 +1,7 @@
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { Accordion, AccordionDetails, AccordionSummary, Box, Button, Container, Grid, Typography } from "@mui/material"
 import { useContext, useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useRemainingTime } from '../../hooks/useRemainingTime';
 import { getOne } from '../../services/antiqueService';
 import { dateConvert } from '../../utils/dateUtil';
@@ -70,6 +70,9 @@ export function Details() {
                             {isOwner &&
                                 <DeleteBid token = {auth.accessToken} antiqueId = {antiqueDetails._id} onDeleteAntique={onDeleteAntique}/>
                             }
+                            <Link to={`/catalogue/details/${antiqueDetails._id}/edit`}>
+                                <Button variant='contained' className={styles['button-delete']}>Edit</Button>
+                            </Link>
                         </Box>
                         <Box>
                         </Box>

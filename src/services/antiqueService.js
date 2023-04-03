@@ -1,4 +1,4 @@
-import { DEL, GET, POST } from "./requester";
+import { DEL, GET, POST, PUT} from "./requester";
 
 const pageSize = 8;
 export function getAll(offset) {
@@ -23,6 +23,9 @@ export function getCollectionSize() {
 export function getOne(id) {
     return GET(`/data/antiques/${id}`);
 };
+export function putEdit(id, body, token) {
+    return PUT(`/data/antiques/${id}`, body, token)
+}
 export function postCreate(body, token) {
     return POST('/data/antiques', body, token);
 };

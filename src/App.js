@@ -11,6 +11,7 @@ import { NotFound } from "./components/NotFound/NotFound";
 import { Register } from "./components/Register/Register";
 import { AntiqueProvider } from "./contexts/AntiqueContext";
 import { AuthProvider } from "./contexts/AuthContext";
+import { Edit } from "./components/Details/Edit/Edit";
 
 function App() {
     return (
@@ -24,6 +25,7 @@ function App() {
                             <Route path="/home" element={<Home />} />
                             <Route path="/catalogue" element={<Catalogue />} />
                             <Route path="/catalogue/details/:id" element={<Details />} />
+                            <Route path="/catalogue/details/:id/edit" element={<Edit />} />
                             <Route path="/create" element={<CreateBid />} />
                             <Route path="/login" element={<Login />} />
                             <Route path="/register" element={<Register />} />
