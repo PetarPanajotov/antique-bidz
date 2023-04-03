@@ -1,5 +1,5 @@
 export const categoriesOptions = {
-    'Furnitures': ['Chairs', 'Tables', 'Cabinets', 'Desks', 'Beds', 'Chests'],
+    'Furniture': ['Chairs', 'Tables', 'Cabinets', 'Desks', 'Beds', 'Chests'],
     'Decorative Arts': ['Ceramics and Pottery', 'Glassware', 'Metalware', 'Textiles', 'Folk Art'],
     'Fine Arts': ['Paintings', 'Sculptures', 'Drawnings and Prints', 'Photography'],
     'Jewelry and Watches': ['Rings', 'Necklaces', 'Earrings', 'Bracelets', 'Pocket Watches'],
