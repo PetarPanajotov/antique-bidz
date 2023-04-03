@@ -17,7 +17,7 @@
 .categories-button-wrapper {
     display: flex;
     align-items: center;
-    padding-top: 10px; 
+    padding-top: 10px;
 }
 .category-button {
     border-radius: 45px;
@@ -47,5 +47,5 @@
     display: flex;
 }
 .description-wrapper {
-    padding-top: 10px; 
+    padding-top: 10px;
 }
