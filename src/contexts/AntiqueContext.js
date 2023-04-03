@@ -1,5 +1,5 @@
 import { createContext, useState, useEffect } from "react";
-import { getAll, getBySearch, getCollectionSize, putEdit } from "../services/antiqueService";
+import { getAll, getBySearch, getCollectionSize, putEdit, postCreate } from "../services/antiqueService";
 import { useLocation, useNavigate } from "react-router-dom";
 
 export const AntiqueContext = createContext();
@@ -57,10 +57,26 @@ export function AntiqueProvider({ children }) {
         setCollectionCount(state => state--);
     };
 
-    const onEditAntiqueSubmit = async(e, antiqueId, data, token) => {
+    const onCreateAntiqueSubmit = async (e, formValues, token) => {
+        e.preventDefault();
+        const data = await postCreate(formValues, token);
+        setAntiqueData(state => {
+            const newState = [...state];
+            newState.unshift(data);
+            if (collectionCount > 8) {
+                newState.pop();
+            }
+            return newState;
+        });
+        //fix this
+        setCollectionCount(state => state++);
+        navigate('/catalogue');
+    };
+
+    const onEditAntiqueSubmit = async (e, antiqueId, data, token) => {
         e.preventDefault();
         const editedValues = await putEdit(antiqueId, data, token);
-        setAntiqueData(state => state.map(x => x._id === antiqueId ? editedValues: x));
+        setAntiqueData(state => state.map(x => x._id === antiqueId ? editedValues : x));
         navigate(`/catalogue/details/${antiqueId}`);
     };
 
@@ -74,6 +90,7 @@ export function AntiqueProvider({ children }) {
         setPagination,
         setIsSearchUndefined,
         onSearchSubmit,
+        onCreateAntiqueSubmit,
         onEditAntiqueSubmit
     };
 

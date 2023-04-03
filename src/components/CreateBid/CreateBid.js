@@ -3,16 +3,13 @@ import { Box, Button, Grid, Paper, TextField, Typography, Container, InputLabel,
 import styles from "./CreateBid.module.css";
 import { categoriesOptions, durationOptions } from "../../utils/selectOptions";
 import { useForm } from "../../hooks/useForm";
-import { postCreate } from "../../services/antiqueService";
 import { AuthContext } from "../../contexts/AuthContext";
-import { useNavigate } from "react-router-dom";
 import { AntiqueContext } from "../../contexts/AntiqueContext";
 
 
 export function CreateBid() {
-    const navigate = useNavigate();
     const {auth} = useContext(AuthContext);
-    const { setAntiqueData, setCollectionCount } = useContext(AntiqueContext);
+    const { onCreateAntiqueSubmit } = useContext(AntiqueContext);
     const { formValues, onChange } = useForm({
         antiqueName: '',
         imgURL: '',
@@ -32,23 +29,8 @@ export function CreateBid() {
     useEffect(() => {
         setSubCategoryOptions(categoriesOptions[formValues.category]);
     }, [formValues.category]);
-
-    const onSubmit = async(e) => {
-        e.preventDefault();
-        const data = await postCreate(formValues, auth.accessToken);
-        setAntiqueData(state => {
-            const newState = [ ...state];
-            newState.unshift(data);
-            newState.pop();
-            return newState;
-        });
-        //fix this
-        setCollectionCount(state => state++);
-        navigate('/catalogue');
-    };
-
     return (
-        <form onSubmit={onSubmit}>
+        <form onSubmit={(e) => onCreateAntiqueSubmit(e, formValues, auth.accessToken)}>
             <Container maxWidth='lg' className={styles['container']}>
                 <Paper elevation={23}>
                     <Box className={styles['text-wrapper']}>
