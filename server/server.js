@@ -1468,6 +1468,7 @@
                 description: 'Antique American Folk Art Four-Drawer Salesman Sample Chest of Drawers, with foliate relief carving throughout, constructed of boxwood, with porcelain knobs.'
             }
         },
+        bids: {},
         recipes: {
             "3987279d-0ad4-4afb-8ca9-5b256ae3b298": {
                 _ownerId: "35c62d76-8152-4626-8712-eeb96381bea8",
