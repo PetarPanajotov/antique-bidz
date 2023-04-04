@@ -1,6 +1,7 @@
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import { Accordion, AccordionDetails, AccordionSummary, Box, Button, Container, Grid, Typography } from "@mui/material"
+import { Accordion, AccordionDetails, AccordionSummary, Box, Button, Container, Grid, ToggleButton, ToggleButtonGroup, Typography } from "@mui/material"
 import { useContext, useEffect, useState } from 'react';
+import * as React from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useRemainingTime } from '../../hooks/useRemainingTime';
 import { getOne } from '../../services/antiqueService';
@@ -9,21 +10,44 @@ import { DeleteBid } from './Delete/Delete';
 import styles from "./Details.module.css";
 import { AuthContext } from '../../contexts/AuthContext';
 import { AntiqueContext } from '../../contexts/AntiqueContext';
+import { getAllBids, postCreateBid } from '../../services/bidService';
 
 export function Details() {
     const { auth } = useContext(AuthContext);
     const { onDeleteAntique } = useContext(AntiqueContext);
     const [antiqueDetails, setAntiqueDetails] = useState({});
+    const [bid, setBid] = React.useState('');
     const { formattedTime, setRemainingTime } = useRemainingTime(dateConvert(antiqueDetails.bidDetails?.endDate));
     const params = useParams();
     const isOwner = antiqueDetails._ownerId === auth._id;
 
+    const handleChange = (e) => {
+      setBid(e.target.value);
+    };
+
     useEffect(() => {
-        getOne(params.id).then(data => {
-            setRemainingTime(dateConvert(data.bidDetails.endDate))
-            setAntiqueDetails(data)
+        Promise.all([
+        getOne(params.id),
+        getAllBids(params.id)]).then(([antique, bids]) => {
+            if(bids.length > 0) {
+                antique.bidDetails.startBid = bids[0].bid
+            };
+            setAntiqueDetails({...antique, bids})
+            setRemainingTime(dateConvert(antique.bidDetails.endDate))
         })
     }, [params.id, setRemainingTime]);
+
+    const onPlaceBidClick = async(e) => {
+        if(!bid) {
+            return
+        };
+        
+        const currentHighest = Number(antiqueDetails.bidDetails.startBid)+Number(bid);
+        
+        const bidValues = await postCreateBid(antiqueDetails._id, currentHighest, auth.accessToken);
+
+        console.log(bidValues);
+    };
 
     return (
         <Container maxwidth='xl'>
@@ -64,11 +88,25 @@ export function Details() {
                             <Box>
                                 <Typography variant="h5">${antiqueDetails.bidDetails?.startBid}</Typography>
                             </Box>
+                            <Box paddingTop={1}>
+                                <ToggleButtonGroup
+                                    value={bid}
+                                    exclusive
+                                    onChange={handleChange}
+                                    aria-label="Platform"
+                                >
+                                    <ToggleButton value='5'>$5</ToggleButton>
+                                    <ToggleButton value='10'>$10</ToggleButton>
+                                    <ToggleButton value='20'>$20</ToggleButton>
+                                    <ToggleButton value='50'>$50</ToggleButton>
+                                    <ToggleButton value='100'>$100</ToggleButton>
+                                </ToggleButtonGroup>
+                            </Box>
                         </Box>
                         <Box className={styles['bid-button-wrapper']}>
-                            <Button variant="contained">Place a bid</Button>
+                            <Button variant="contained" onClick = { onPlaceBidClick }>Place a bid</Button>
                             {isOwner &&
-                                <DeleteBid token = {auth.accessToken} antiqueId = {antiqueDetails._id} onDeleteAntique={onDeleteAntique}/>
+                                <DeleteBid token={auth.accessToken} antiqueId={antiqueDetails._id} onDeleteAntique={onDeleteAntique} />
                             }
                             <Link to={`/catalogue/details/${antiqueDetails._id}/edit`}>
                                 <Button variant='contained' className={styles['button-delete']}>Edit</Button>
