@@ -1,7 +1,6 @@
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { Accordion, AccordionDetails, AccordionSummary, Box, Button, Container, Grid, ToggleButton, ToggleButtonGroup, Typography } from "@mui/material"
 import { useContext, useEffect, useState } from 'react';
-import * as React from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useRemainingTime } from '../../hooks/useRemainingTime';
 import { getOne } from '../../services/antiqueService';
@@ -14,9 +13,9 @@ import { getAllBids, postCreateBid } from '../../services/bidService';
 
 export function Details() {
     const { auth } = useContext(AuthContext);
-    const { onDeleteAntique } = useContext(AntiqueContext);
+    const { onDeleteAntique, handleUpdateCurrentHighestBid } = useContext(AntiqueContext);
     const [antiqueDetails, setAntiqueDetails] = useState({});
-    const [bid, setBid] = React.useState('');
+    const [bid, setBid] = useState('');
     const { formattedTime, setRemainingTime } = useRemainingTime(dateConvert(antiqueDetails.bidDetails?.endDate));
     const params = useParams();
     const isOwner = antiqueDetails._ownerId === auth._id;
@@ -41,12 +40,14 @@ export function Details() {
         if(!bid) {
             return
         };
-        
-        const currentHighest = Number(antiqueDetails.bidDetails.startBid)+Number(bid);
-        
+        const currentHighest = Number(antiqueDetails.bidDetails.startBid) + Number(bid);
         const bidValues = await postCreateBid(antiqueDetails._id, currentHighest, auth.accessToken);
-
-        console.log(bidValues);
+        setAntiqueDetails((state) => ({
+            ...state,
+            bidDetails: { ...state.bidDetails, startBid: bidValues.bid },
+            bids: [{ author: { email: auth.email }, ...bidValues }, ...state.bids]
+          }));
+        handleUpdateCurrentHighestBid(antiqueDetails._id, currentHighest);
     };
 
     return (
@@ -133,8 +134,7 @@ export function Details() {
                                 <Typography>Highest Bids</Typography>
                             </AccordionSummary>
                             <AccordionDetails>
-                                <Typography>Veri - $520</Typography>
-                                <Typography>Meri - $510</Typography>
+                                {antiqueDetails.bids?.map(x => <Typography key={x._id}>{x.author.email} - ${x.bid}</Typography>)}
                             </AccordionDetails>
                         </Accordion>
                     </Box>
