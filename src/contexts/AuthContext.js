@@ -1,6 +1,6 @@
 import { createContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { logout } from "../services/authService";
+// import { logout } from "../services/authService";
 
 export const AuthContext = createContext();
 
@@ -11,10 +11,11 @@ export function AuthProvider({ children }) {
 
     const user = auth.accessToken? true: false;
 
-    const onLogout = () => {
-        logout(auth.accessToken);
+    const onLogout = async() => {
+        //because of react strict mode, this is removed for now in development mode.
+        // await logout(auth.accessToken);
         setAuth({});
-        navigate('/');
+        navigate('/', { replace: true });
     };
 
     const ctx = {

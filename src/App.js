@@ -12,6 +12,7 @@ import { Register } from "./components/Register/Register";
 import { AntiqueProvider } from "./contexts/AntiqueContext";
 import { AuthProvider } from "./contexts/AuthContext";
 import { Edit } from "./components/Details/Edit/Edit";
+import { Logout } from "./components/Logout/Logout";
 
 function App() {
     return (
@@ -29,6 +30,7 @@ function App() {
                             <Route path="/create" element={<CreateBid />} />
                             <Route path="/login" element={<Login />} />
                             <Route path="/register" element={<Register />} />
+                            <Route path="/logout" element={<Logout />} />
                             <Route path="*" element={<NotFound />} />
                         </Routes>
                         <Footer />

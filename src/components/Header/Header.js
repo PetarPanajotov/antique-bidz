@@ -6,7 +6,7 @@ import { ElevationScroll } from "./ElevationScroll";
 import styles from "./Header.module.css"
 
 export function Header() {
-    const { user, onLogout } = useContext(AuthContext);
+    const { user } = useContext(AuthContext);
     return (
         <ElevationScroll>
             <AppBar className={styles['container']}>
@@ -24,7 +24,7 @@ export function Header() {
                             </>
                         }
                         {user &&
-                            <Link to={"javascript:void(0)"}><Typography className={styles["nav-links"]} onClick={onLogout}>Logout</Typography></Link>
+                            <Link to={"/logout"}><Typography className={styles["nav-links"]}>Logout</Typography></Link>
                         }
                         <Link to={"/about"}><Typography className={styles["nav-links"]}>About Us</Typography></Link>
                     </Box>
