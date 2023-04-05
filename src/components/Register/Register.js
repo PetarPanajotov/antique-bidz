@@ -1,17 +1,15 @@
 import { LockOutlined } from "@mui/icons-material";
-import { Avatar, Box, Button, Paper, TextField, Typography, Container } from "@mui/material";
+import { Avatar, Box, Button, Paper, TextField, Typography, Container, Alert } from "@mui/material";
 import { useForm } from "../../hooks/useForm";
 import styles from './Register.module.css'
-import { register } from "../../services/authService";
 import { useContext } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
-import { useNavigate } from "react-router-dom";
+import { useErrorNotification } from "../../hooks/useErrorNotification";
 
 export function Register() {
-    const navigate = useNavigate()
-    const { setAuth } = useContext(AuthContext);
-
-    const { formValues, onChange } = useForm({
+    const { onSubmitRegister } = useContext(AuthContext);
+    const { errorNotification, showNotification } = useErrorNotification('')
+    const { formValues, onChange, resetFormValues } = useForm({
         email: '',
         firstName: '',
         lastName: '',
@@ -19,23 +17,17 @@ export function Register() {
         repeatPassword: ''
     });
 
-    const onSubmit = async (e) => {
-        e.preventDefault();
-        try {
-            const data = await register({ formValues });
-            setAuth(data);
-            navigate('/')
-        } catch (err) {
-            console.log(err.message)
-        };
-    };
-
     return (
-        <form onSubmit={onSubmit}>
+        <form onSubmit={(e) => onSubmitRegister(e, formValues, resetFormValues, showNotification)}>
             <Container maxWidth='xs' >
                 <Box className={styles['container']}>
                     <Paper elevation={11} className={`${styles['form-wrapper']}`}>
-                        <Box paddingTop={3}>
+                        <Box height={'50px'}>
+                            {errorNotification &&
+                                <Alert severity="error">{errorNotification}</Alert>
+                            }
+                        </Box>
+                        <Box>
                             <Box className={styles['avatar-wrapper']}>
                                 <Avatar className={styles['avatar']}>
                                     <LockOutlined />
@@ -50,7 +42,7 @@ export function Register() {
                                 label={<span className={styles['form-input-label']}>Email</span>}
                                 variant="outlined"
                                 autoComplete="off"
-                                value={formValues.name}
+                                value={formValues.email}
                                 onChange={onChange} />
                         </Box>
                         <Box paddingTop={2}>
@@ -60,7 +52,7 @@ export function Register() {
                                 label={<span className={styles['form-input-label']}>First Name</span>}
                                 variant="outlined"
                                 autoComplete="off"
-                                value={formValues.name}
+                                value={formValues.firstName}
                                 onChange={onChange} />
                         </Box>
                         <Box paddingTop={2}>
@@ -70,7 +62,7 @@ export function Register() {
                                 label={<span className={styles['form-input-label']}>Last Name</span>}
                                 variant="outlined"
                                 autoComplete="off"
-                                value={formValues.name}
+                                value={formValues.lastName}
                                 onChange={onChange} />
                         </Box>
                         <Box paddingTop={2}>
@@ -80,7 +72,7 @@ export function Register() {
                                 type="password"
                                 label={<span className={styles['form-input-label']}>Password</span>}
                                 variant="outlined"
-                                value={formValues.name}
+                                value={formValues.password}
                                 onChange={onChange} />
                         </Box>
                         <Box paddingTop={2}>
@@ -90,7 +82,7 @@ export function Register() {
                                 type="password"
                                 label={<span className={styles['form-input-label']}>Repeat Password</span>}
                                 variant="outlined"
-                                value={formValues.name}
+                                value={formValues.repeatPassword}
                                 onChange={onChange} />
                         </Box>
                         <Box paddingTop={5}>

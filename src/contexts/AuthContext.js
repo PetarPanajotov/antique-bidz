@@ -1,6 +1,6 @@
 import { createContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { login } from "../services/authService";
+import { login, register } from "../services/authService";
 // import { logout } from "../services/authService";
 export const AuthContext = createContext();
 
@@ -12,14 +12,25 @@ export function AuthProvider({ children }) {
 
     const onSubmitLogin = async (e, formValues, resetFormValues, showNotification) => {
         e.preventDefault();
-        debugger;
         try {
             const data = await login({ formValues })
             setAuth(data);
             navigate('/');
-        } catch {
-            showNotification('Invalid email or password! Please try again.')
+        } catch (err) {
+            showNotification(err.message)
             resetFormValues();
+        };
+    };
+
+    const onSubmitRegister = async (e, formValues, resetFormValues, showNotification) => {
+        e.preventDefault();
+        try {
+            const data = await register({ formValues });
+            setAuth(data);
+            navigate('/')
+        } catch (err) {
+            showNotification(err.message)
+            resetFormValues()
         };
     };
 
@@ -35,7 +46,8 @@ export function AuthProvider({ children }) {
         setAuth,
         user,
         onLogout,
-        onSubmitLogin
+        onSubmitLogin,
+        onSubmitRegister,
     };
 
     return (

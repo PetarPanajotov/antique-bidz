@@ -4,7 +4,7 @@ export function register({formValues}) {
     return POST('/users/register', {...formValues});
 };
 
-export function login({formValues}) {
+export async function login({formValues}) {
     return POST('/users/login', {...formValues});
 };
 
