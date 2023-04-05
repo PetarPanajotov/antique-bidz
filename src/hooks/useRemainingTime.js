@@ -9,11 +9,11 @@ export function useRemainingTime(initialDate) {
             if (seconds === 0) {
                 minutes--;
                 seconds = 60;
-            }
+            };
             if (minutes === 0) {
                 hours--;
                 minutes = 59;
-            }
+            };
             seconds--;
             setRemainingTime([hours, minutes, seconds]);
         }, 1000);

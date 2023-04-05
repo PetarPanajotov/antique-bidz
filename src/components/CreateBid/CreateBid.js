@@ -29,6 +29,7 @@ export function CreateBid() {
     useEffect(() => {
         setSubCategoryOptions(categoriesOptions[formValues.category]);
     }, [formValues.category]);
+    
     return (
         <form onSubmit={(e) => onCreateAntiqueSubmit(e, formValues, auth.accessToken)}>
             <Container maxWidth='lg' className={styles['container']}>

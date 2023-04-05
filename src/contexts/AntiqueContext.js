@@ -3,6 +3,7 @@ import { getAll, getBySearch, getCollectionSize, putEdit, postCreate } from "../
 import { useLocation, useNavigate } from "react-router-dom";
 import { getAllBids } from "../services/bidService";
 import { addBidsToAntiques, updateCurrentHighestBid } from "../utils/antiqueContextUtil";
+import { formatDuration } from "../utils/dateUtil";
 
 export const AntiqueContext = createContext();
 
@@ -69,6 +70,8 @@ export function AntiqueProvider({ children }) {
 
     const onCreateAntiqueSubmit = async (e, formValues, token) => {
         e.preventDefault();
+        const duration = formValues.bidDetails.endDate
+        formValues.bidDetails.endDate = formatDuration(duration)
         const data = await postCreate(formValues, token);
         setAntiqueData(state => {
             const newState = [...state];

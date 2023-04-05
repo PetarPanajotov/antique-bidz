@@ -1,3 +1,11 @@
+export function formatDuration(durationHours) {
+    let date = new Date();
+    date.setHours(date.getHours() + durationHours);
+    const month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    const formattedDate = (`${date.getDate()} ${(month[date.getMonth()])}, ${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`);
+    return formattedDate;
+};
+
 export function dateConvert(endDate) {
     const now = new Date();
     const target = new Date(endDate);
