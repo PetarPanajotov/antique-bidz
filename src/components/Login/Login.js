@@ -1,35 +1,33 @@
 import { LockOutlined } from "@mui/icons-material";
-import { Avatar, Box, Button, Paper, TextField, Typography, Container } from "@mui/material";
+import { Avatar, Box, Button, Paper, TextField, Typography, Container, Alert } from "@mui/material";
 import { useContext } from "react";
-import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthContext";
 import { useForm } from "../../hooks/useForm";
-import { login } from "../../services/authService";
 import styles from './Login.module.css'
+import { useErrorNotification } from "../../hooks/useErrorNotification";
 
 export function Login() {
-    const navigate = useNavigate();
-    const { setAuth } = useContext(AuthContext);
+    const { onSubmitLogin } = useContext(AuthContext);
+    const { errorNotification, showNotification } = useErrorNotification('');
 
-    const { formValues, onChange } = useForm({
+    const { formValues, onChange, resetFormValues } = useForm({
         email: '',
         password: ''
     });
 
-    const onSubmit = async (e) => {
-        e.preventDefault();
-        const data = await login({ formValues })
-        setAuth(data);
-        navigate('/');
-    };
 
     return (
-        <form onSubmit={onSubmit}>
+        <form onSubmit={(e) => onSubmitLogin(e, formValues, resetFormValues, showNotification)}>
             <Container maxWidth='xs'>
                 <Box className={styles['container']}>
                     <Paper elevation={11} className={styles['form-wrapper']}>
-                        <Box paddingTop={3}>
-                            <Box className={styles['avatar-wrapper']}>
+                        <Box>
+                            <Box height={'50px'}>
+                                {errorNotification &&
+                                    <Alert severity="error">{errorNotification}</Alert>
+                                }
+                            </Box>
+                            <Box className={styles['avatar-wrapper']} paddingTop={2}>
                                 <Avatar className={styles['avatar']}>
                                     <LockOutlined />
                                 </Avatar>
@@ -47,7 +45,7 @@ export function Login() {
                             />
                         </Box>
                         <Box paddingTop={2}>
-                            <TextField 
+                            <TextField
                                 className={styles['form-input']}
                                 type='password'
                                 label={<span className={styles['form-input-label']}>Password</span>}

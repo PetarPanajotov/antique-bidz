@@ -1,15 +1,27 @@
 import { createContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { login } from "../services/authService";
 // import { logout } from "../services/authService";
-
 export const AuthContext = createContext();
 
 export function AuthProvider({ children }) {
+    const [auth, setAuth] = useState({});
     const navigate = useNavigate();
 
-    const [auth, setAuth] = useState({});
-
     const user = auth.accessToken? true: false;
+
+    const onSubmitLogin = async (e, formValues, resetFormValues, showNotification) => {
+        e.preventDefault();
+        debugger;
+        try {
+            const data = await login({ formValues })
+            setAuth(data);
+            navigate('/');
+        } catch {
+            showNotification('Invalid email or password! Please try again.')
+            resetFormValues();
+        };
+    };
 
     const onLogout = async() => {
         //because of react strict mode, this is removed for now in development mode.
@@ -22,7 +34,8 @@ export function AuthProvider({ children }) {
         auth,
         setAuth,
         user,
-        onLogout
+        onLogout,
+        onSubmitLogin
     };
 
     return (

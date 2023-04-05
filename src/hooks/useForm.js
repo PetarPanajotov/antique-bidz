@@ -18,10 +18,14 @@ export function useForm(initialValues) {
     const changeValues = (newValues) => {
         return setFormValues(newValues);
     };
+    const resetFormValues = () => {
+        setFormValues(initialValues);
+    }
     
     return {
         formValues,
         onChange,
-        changeValues
+        changeValues,
+        resetFormValues
     };
 }; 

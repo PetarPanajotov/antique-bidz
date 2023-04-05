@@ -31,7 +31,6 @@ async function api(method, endPoint, body, token) {
         return data;
     }
     catch (error) {
-        alert(error.message);
         throw error;
     };
 };
