@@ -9,12 +9,10 @@ import { useErrorNotification } from "../../hooks/useErrorNotification";
 export function Login() {
     const { onSubmitLogin } = useContext(AuthContext);
     const { errorNotification, showNotification } = useErrorNotification('');
-
     const { formValues, onChange, resetFormValues } = useForm({
         email: '',
         password: ''
     });
-
 
     return (
         <form onSubmit={(e) => onSubmitLogin(e, formValues, resetFormValues, showNotification)}>
