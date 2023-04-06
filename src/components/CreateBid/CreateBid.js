@@ -1,15 +1,17 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Box, Button, Grid, Paper, TextField, Typography, Container, InputLabel, Select, FormControl, MenuItem } from "@mui/material";
+import { Box, Button, Grid, Paper, TextField, Typography, Container, InputLabel, Select, FormControl, MenuItem, Alert } from "@mui/material";
 import styles from "./CreateBid.module.css";
 import { categoriesOptions, durationOptions } from "../../utils/selectOptions";
 import { useForm } from "../../hooks/useForm";
 import { AuthContext } from "../../contexts/AuthContext";
 import { AntiqueContext } from "../../contexts/AntiqueContext";
-
+import { useErrorNotification } from "../../hooks/useErrorNotification";
 
 export function CreateBid() {
-    const {auth} = useContext(AuthContext);
-    const { onCreateAntiqueSubmit } = useContext(AntiqueContext);
+    const { auth } = useContext(AuthContext);
+    const { onCreateAntiqueSubmit, onBlurErrorMessage, errors } = useContext(AntiqueContext);
+    const [subCategoryOptions, setSubCategoryOptions] = useState([]);
+    const { errorNotification, showNotification } = useErrorNotification('');
     const { formValues, onChange } = useForm({
         antiqueName: '',
         imgURL: '',
@@ -22,18 +24,21 @@ export function CreateBid() {
         description: ''
     });
 
-    const [subCategoryOptions, setSubCategoryOptions] = useState([]);
-
     const categoryOptions = Object.keys(categoriesOptions);
 
     useEffect(() => {
         setSubCategoryOptions(categoriesOptions[formValues.category]);
     }, [formValues.category]);
-    
+
     return (
-        <form onSubmit={(e) => onCreateAntiqueSubmit(e, formValues, auth.accessToken)}>
+        <form onSubmit={(e) => onCreateAntiqueSubmit(e, formValues, auth.accessToken, showNotification)}>
             <Container maxWidth='lg' className={styles['container']}>
                 <Paper elevation={23}>
+                    <Box height={'50px'}>
+                        {errorNotification &&
+                            <Alert severity="error">{errorNotification}</Alert>
+                        }
+                    </Box>
                     <Box className={styles['text-wrapper']}>
                         <Typography variant="h3">Create a Bid</Typography>
                     </Box>
@@ -55,6 +60,10 @@ export function CreateBid() {
                                         label="Antique Name"
                                         name="antiqueName"
                                         value={formValues.name}
+                                        error={Boolean(errors.antiqueName)}
+                                        required={true}
+                                        helperText={errors.antiqueName}
+                                        onBlur={(e) => onBlurErrorMessage(e)}
                                         onChange={onChange}
                                         className={styles['create-input']}
                                     />
@@ -65,6 +74,10 @@ export function CreateBid() {
                                         label="Image URL"
                                         name="imgURL"
                                         value={formValues.name}
+                                        required={true}
+                                        error={Boolean(errors.imgURL)}
+                                        helperText={errors.imgURL}
+                                        onBlur={(e) => onBlurErrorMessage(e)}
                                         onChange={onChange}
                                         className={styles['create-input']}
                                     />
@@ -78,9 +91,12 @@ export function CreateBid() {
                                             name="category"
                                             defaultValue=''
                                             value={formValues.name}
+                                            required={true}
+                                            error={Boolean(errors.category)}
+                                            onBlur={(e) => onBlurErrorMessage(e)}
                                             onChange={onChange}
                                         >
-                                            {categoryOptions.map(x => <MenuItem key= {x} value={x}>{x}</MenuItem>)}
+                                            {categoryOptions.map(x => <MenuItem key={x} value={x}>{x}</MenuItem>)}
                                         </Select>
                                     </FormControl>
                                 </Box>
@@ -93,9 +109,12 @@ export function CreateBid() {
                                             name="subCategory"
                                             defaultValue=''
                                             value={formValues.name}
+                                            required={true}
+                                            error={Boolean(errors.subCategory)}
+                                            onBlur={(e) => onBlurErrorMessage(e)}
                                             onChange={onChange}
                                         >
-                                            {subCategoryOptions && subCategoryOptions.map(x => <MenuItem key= {x} value={x}>{x}</MenuItem>)}
+                                            {subCategoryOptions && subCategoryOptions.map(x => <MenuItem key={x} value={x}>{x}</MenuItem>)}
                                         </Select>
                                     </FormControl>
                                 </Box>
@@ -105,6 +124,10 @@ export function CreateBid() {
                                         label="Starting Bid Price"
                                         name="startBid"
                                         value={formValues.bidDetails.name}
+                                        required={true}
+                                        error={Boolean(errors.startBid)}
+                                        helperText={errors.startBid}
+                                        onBlur={(e) => onBlurErrorMessage(e)}
                                         onChange={onChange}
                                         className={styles['create-input']}
                                     />
@@ -118,9 +141,12 @@ export function CreateBid() {
                                             name='endDate'
                                             defaultValue=''
                                             value={formValues.bidDetails.name}
+                                            required={true}
+                                            error={Boolean(errors.endDate)}
+                                            onBlur={(e) => onBlurErrorMessage(e)}
                                             onChange={onChange}
                                         >
-                                            {durationOptions.map(x => <MenuItem key= {x} value={x}>{x} Hours</MenuItem>)}
+                                            {durationOptions.map(x => <MenuItem key={x} value={x}>{x} Hours</MenuItem>)}
                                         </Select>
                                     </FormControl>
                                 </Box>
@@ -131,6 +157,10 @@ export function CreateBid() {
                                         label="Description"
                                         name="description"
                                         value={formValues.name}
+                                        required={true}
+                                        error={Boolean(errors.description)}
+                                        helperText={errors.description}
+                                        onBlur={(e) => onBlurErrorMessage(e)}
                                         onChange={onChange}
                                         className={styles['create-input']}
                                     />
