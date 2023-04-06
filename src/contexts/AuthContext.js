@@ -12,6 +12,9 @@ export function AuthProvider({ children }) {
 
     const onSubmitLogin = async (e, formValues, resetFormValues, showNotification) => {
         e.preventDefault();
+        if (!formValues.email || !formValues.password) {
+            return showNotification('Missing fields!')
+        };
         try {
             const data = await login({ formValues })
             setAuth(data);
