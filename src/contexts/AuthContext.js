@@ -22,8 +22,13 @@ export function AuthProvider({ children }) {
         };
     };
 
-    const onSubmitRegister = async (e, formValues, resetFormValues, showNotification) => {
+    const onSubmitRegister = async (e, formValues, resetFormValues, showNotification, errors) => {
         e.preventDefault();
+        for (const value of Object.values(errors)) {
+          if (value) {
+            return showNotification(value)
+          };
+        };
         try {
             const data = await register({ formValues });
             setAuth(data);
