@@ -38,7 +38,8 @@ export function AntiqueProvider({ children }) {
                     const bids = Object.values(bidsData);
                     setAntiqueData(addBidsToAntiques(antiques, bids));
                     setCollectionCount(count);
-                });
+                })
+                .catch(err => console.log(err.message));
         } else {
             Promise.all([getBySearch(search, pagination.offset), getAllBids()])
                 .then(response => {
@@ -47,7 +48,8 @@ export function AntiqueProvider({ children }) {
                     const bids = Object.values(bidsData);
                     setAntiqueData(addBidsToAntiques(antiques, bids));
                     setCollectionCount(count);
-                });
+                })
+                .catch(err => console.log(err.message));
         };
     }, [pagination.offset, isSearchUndefined, search]);
 
@@ -104,12 +106,24 @@ export function AntiqueProvider({ children }) {
             return showNotification(err.message);
         }
     };
-    
-    const onEditAntiqueSubmit = async (e, antiqueId, data, token) => {
+
+    const onEditAntiqueSubmit = async (e, antiqueId, formValues, token, showNotification, resetFormValues) => {
         e.preventDefault();
-        const editedValues = await putEdit(antiqueId, data, token);
-        setAntiqueData(state => state.map(x => x._id === antiqueId ? editedValues : x));
-        navigate(`/catalogue/details/${antiqueId}`);
+        for (const value of Object.values(errors)) {
+            if (value) {
+                return showNotification(value);
+            };
+        };
+        if (!formValues.subCategory || !formValues.category || !formValues.bidDetails.endDate) {
+            return showNotification('Missing fields. Please try again.');
+        };
+        try {
+            const editedValues = await putEdit(antiqueId, formValues, token);
+            setAntiqueData(state => state.map(x => x._id === antiqueId ? editedValues : x));
+            navigate(`/catalogue/details/${antiqueId}`);
+        } catch (err) {
+            showNotification(err.message);
+        };
     };
 
     const ctx = {

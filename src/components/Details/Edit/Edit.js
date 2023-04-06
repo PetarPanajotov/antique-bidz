@@ -1,4 +1,4 @@
-import { Box, Button, Grid, Paper, TextField, Typography, Container, InputLabel, Select, FormControl, MenuItem } from "@mui/material";
+import { Box, Button, Grid, Paper, TextField, Typography, Container, InputLabel, Select, FormControl, MenuItem, Alert } from "@mui/material";
 import styles from "./Edit.module.css"
 import { useContext, useEffect, useState } from "react";
 import { useForm } from "../../../hooks/useForm";
@@ -8,12 +8,15 @@ import { getOne } from "../../../services/antiqueService";
 import { useParams } from "react-router-dom";
 import { AntiqueContext } from "../../../contexts/AntiqueContext";
 import { AuthContext } from "../../../contexts/AuthContext";
+import { useErrorNotification } from "../../../hooks/useErrorNotification";
 
 export function Edit() {
-    const { onEditAntiqueSubmit } = useContext(AntiqueContext);
+    const { onEditAntiqueSubmit, errors, onBlurErrorMessage } = useContext(AntiqueContext);
     const { auth } = useContext(AuthContext);
     const [subCategoryOptions, setSubCategoryOptions] = useState([]);
-    const { formValues, onChange, changeValues } = useForm({
+    const categoryOptions = Object.keys(categoriesOptions);
+    const { errorNotification, showNotification } = useErrorNotification('');
+    const { formValues, onChange, changeValues, resetFormValues } = useForm({
         antiqueName: '',
         imgURL: '',
         category: '',
@@ -32,18 +35,22 @@ export function Edit() {
                 changeValues(data);
                 setSubCategoryOptions(categoriesOptions[data.category])
             })
+            .catch(err =>  console.log(err.message));
     }, [id]);
-    
-    const categoryOptions = Object.keys(categoriesOptions);
 
     useEffect(() => {
         setSubCategoryOptions(categoriesOptions[formValues.category]);
     }, [formValues.category]);
 
     return (
-        <form onSubmit={(e) => onEditAntiqueSubmit(e, id, formValues, auth.accessToken)}>
+        <form onSubmit={(e) => onEditAntiqueSubmit(e, id, formValues, auth.accessToken, showNotification, resetFormValues)}>
             <Container maxWidth='lg' className={styles['container']}>
                 <Paper elevation={23}>
+                <Box height={'50px'}>
+                        {errorNotification &&
+                            <Alert severity="error">{errorNotification}</Alert>
+                        }
+                    </Box>
                     <Box className={styles['text-wrapper']}>
                         <Typography variant="h3">Edit a Bid</Typography>
                     </Box>
@@ -66,6 +73,10 @@ export function Edit() {
                                         label="Antique Name"
                                         name="antiqueName"
                                         value={formValues.antiqueName}
+                                        required={true}
+                                        error={Boolean(errors.antiqueName)}
+                                        helperText={errors.antiqueName}
+                                        onBlur={(e) => onBlurErrorMessage(e)}
                                         onChange={onChange}
                                         className={styles['create-input']}
                                     />
@@ -77,6 +88,10 @@ export function Edit() {
                                         label="Image URL"
                                         name="imgURL"
                                         value={formValues.imgURL}
+                                        required={true}
+                                        error={Boolean(errors.imgURL)}
+                                        helperText={errors.imgURL}
+                                        onBlur={(e) => onBlurErrorMessage(e)}
                                         onChange={onChange}
                                         className={styles['create-input']}
                                     />
@@ -89,6 +104,9 @@ export function Edit() {
                                             label="Category"
                                             name="category"
                                             value={formValues.category}
+                                            required={true}
+                                            error={Boolean(errors.category)}
+                                            onBlur={(e) => onBlurErrorMessage(e)}
                                             onChange={onChange}
                                         >
                                             {categoryOptions.map(x => <MenuItem key={x} value={x}>{x}</MenuItem>)}
@@ -102,8 +120,10 @@ export function Edit() {
                                             labelId="sub-category-label"
                                             label="Sub Category"
                                             name="subCategory"
-                                            defaultValue={formValues.category}
                                             value={formValues.subCategory}
+                                            required={true}
+                                            error={Boolean(errors.subCategory)}
+                                            onBlur={(e) => onBlurErrorMessage(e)}
                                             onChange={onChange}
                                         >
                                             {subCategoryOptions && subCategoryOptions.map(x => <MenuItem key={x} value={x}>{x}</MenuItem>)}
@@ -116,6 +136,10 @@ export function Edit() {
                                         label="Starting Bid Price"
                                         name="startBid"
                                         value={formValues.bidDetails.startBid}
+                                        required={true}
+                                        error={Boolean(errors.startBid)}
+                                        helperText={errors.startBid}
+                                        onBlur={(e) => onBlurErrorMessage(e)}
                                         onChange={onChange}
                                         className={styles['create-input']}
                                     />
@@ -127,8 +151,10 @@ export function Edit() {
                                             labelId="bid-duration-label"
                                             label='Bid Duration'
                                             name='endDate'
-                                            defaultValue=''
-                                            value={formValues.bidDetails.bidDuration}
+                                            value={formValues.bidDetails.endDate}
+                                            required={true}
+                                            error={Boolean(errors.endDate)}
+                                            onBlur={(e) => onBlurErrorMessage(e)}
                                             onChange={onChange}
                                         >
                                             {durationOptions.map(x => <MenuItem key={x} value={x}>{x} Hours</MenuItem>)}
@@ -142,6 +168,10 @@ export function Edit() {
                                         label="Description"
                                         name="description"
                                         value={formValues.description}
+                                        required={true}
+                                        error={Boolean(errors.description)}
+                                        helperText={errors.description}
+                                        onBlur={(e) => onBlurErrorMessage(e)}
                                         onChange={onChange}
                                         className={styles['create-input']}
                                     />

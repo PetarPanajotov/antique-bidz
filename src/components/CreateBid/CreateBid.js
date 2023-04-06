@@ -89,8 +89,7 @@ export function CreateBid() {
                                             labelId="category-label"
                                             label="Category"
                                             name="category"
-                                            defaultValue=''
-                                            value={formValues.name}
+                                            value={formValues.category}
                                             required={true}
                                             error={Boolean(errors.category)}
                                             onBlur={(e) => onBlurErrorMessage(e)}
@@ -107,8 +106,7 @@ export function CreateBid() {
                                             labelId="sub-category-label"
                                             label="Sub Category"
                                             name="subCategory"
-                                            defaultValue=''
-                                            value={formValues.name}
+                                            value={formValues.subCategory}
                                             required={true}
                                             error={Boolean(errors.subCategory)}
                                             onBlur={(e) => onBlurErrorMessage(e)}
@@ -139,8 +137,7 @@ export function CreateBid() {
                                             labelId="bid-duration-label"
                                             label='Bid Duration'
                                             name='endDate'
-                                            defaultValue=''
-                                            value={formValues.bidDetails.name}
+                                            value={formValues.bidDetails.endDate}
                                             required={true}
                                             error={Boolean(errors.endDate)}
                                             onBlur={(e) => onBlurErrorMessage(e)}
