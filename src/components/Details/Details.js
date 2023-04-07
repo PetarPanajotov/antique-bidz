@@ -12,7 +12,7 @@ import { AntiqueContext } from '../../contexts/AntiqueContext';
 import { getAllBids, postCreateBid } from '../../services/bidService';
 
 export function Details() {
-    const { auth } = useContext(AuthContext);
+    const { auth, user } = useContext(AuthContext);
     const { onDeleteAntique, handleUpdateCurrentHighestBid } = useContext(AntiqueContext);
     const [antiqueDetails, setAntiqueDetails] = useState({});
     const [bid, setBid] = useState('');
@@ -21,23 +21,23 @@ export function Details() {
     const isOwner = antiqueDetails._ownerId === auth._id;
 
     const handleChange = (e) => {
-      setBid(e.target.value);
+        setBid(e.target.value);
     };
 
     useEffect(() => {
         Promise.all([
-        getOne(params.id),
-        getAllBids(params.id)]).then(([antique, bids]) => {
-            if(bids.length > 0) {
-                antique.bidDetails.startBid = bids[0].bid
-            };
-            setAntiqueDetails({...antique, bids})
-            setRemainingTime(dateConvert(antique.bidDetails.endDate))
-        })
+            getOne(params.id),
+            getAllBids(params.id)]).then(([antique, bids]) => {
+                if (bids.length > 0) {
+                    antique.bidDetails.startBid = bids[0].bid
+                };
+                setAntiqueDetails({ ...antique, bids })
+                setRemainingTime(dateConvert(antique.bidDetails.endDate))
+            })
     }, [params.id, setRemainingTime]);
 
-    const onPlaceBidClick = async(e) => {
-        if(!bid) {
+    const onPlaceBidClick = async (e) => {
+        if (!bid) {
             return
         };
         const currentHighest = Number(antiqueDetails.bidDetails.startBid) + Number(bid);
@@ -46,7 +46,7 @@ export function Details() {
             ...state,
             bidDetails: { ...state.bidDetails, startBid: bidValues.bid },
             bids: [{ author: { email: auth.email }, ...bidValues }, ...state.bids]
-          }));
+        }));
         handleUpdateCurrentHighestBid(antiqueDetails._id, currentHighest);
     };
 
@@ -89,29 +89,35 @@ export function Details() {
                             <Box>
                                 <Typography variant="h5">${antiqueDetails.bidDetails?.startBid}</Typography>
                             </Box>
-                            <Box paddingTop={1}>
-                                <ToggleButtonGroup
-                                    value={bid}
-                                    exclusive
-                                    onChange={handleChange}
-                                    aria-label="Platform"
-                                >
-                                    <ToggleButton value='5'>$5</ToggleButton>
-                                    <ToggleButton value='10'>$10</ToggleButton>
-                                    <ToggleButton value='20'>$20</ToggleButton>
-                                    <ToggleButton value='50'>$50</ToggleButton>
-                                    <ToggleButton value='100'>$100</ToggleButton>
-                                </ToggleButtonGroup>
-                            </Box>
+                            {!isOwner && user && 
+                                <Box paddingTop={1}>
+                                    <ToggleButtonGroup
+                                        value={bid}
+                                        exclusive
+                                        onChange={handleChange}
+                                        aria-label="Platform"
+                                    >
+                                        <ToggleButton value='5'>+$5</ToggleButton>
+                                        <ToggleButton value='10'>+$10</ToggleButton>
+                                        <ToggleButton value='20'>+$20</ToggleButton>
+                                        <ToggleButton value='50'>+$50</ToggleButton>
+                                        <ToggleButton value='100'>+$100</ToggleButton>
+                                    </ToggleButtonGroup>
+                                </Box>
+                            }
                         </Box>
                         <Box className={styles['bid-button-wrapper']}>
-                            <Button variant="contained" onClick = { onPlaceBidClick }>Place a bid</Button>
-                            {isOwner &&
-                                <DeleteBid token={auth.accessToken} antiqueId={antiqueDetails._id} onDeleteAntique={onDeleteAntique} />
+                            {!isOwner && user &&
+                                <Button variant="contained" onClick={onPlaceBidClick}>Place a bid</Button>
                             }
-                            <Link to={`/catalogue/details/${antiqueDetails._id}/edit`}>
-                                <Button variant='contained' className={styles['button-delete']}>Edit</Button>
-                            </Link>
+                            {isOwner &&
+                                <>
+                                    <DeleteBid token={auth.accessToken} antiqueId={antiqueDetails._id} onDeleteAntique={onDeleteAntique} />
+                                    <Link to={`/catalogue/details/${antiqueDetails._id}/edit`}>
+                                        <Button variant='contained' className={styles['button-delete']}>Edit</Button>
+                                    </Link>
+                                </>
+                            }
                         </Box>
                         <Box>
                         </Box>
