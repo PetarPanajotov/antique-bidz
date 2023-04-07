@@ -7,12 +7,12 @@ import { useContext, useState } from "react";
 import { AntiqueContext } from "../../contexts/AntiqueContext";
 
 export function Catalogue() {
-    const { antiqueData, collectionCount, setPagination, onSearchSubmit, setIsSearchUndefined, pagination} = useContext(AntiqueContext);
+    const { antiqueData, collectionCount, setPagination, onSearchSubmit, setIsSearchUndefined, pagination } = useContext(AntiqueContext);
     const [searchValue, setSearchValue] = useState('');
 
     function onChange(e) {
         setSearchValue(e.target.value);
-        if(!e.target.value) {
+        if (!e.target.value) {
             return setIsSearchUndefined(true);
         };
     };
@@ -24,7 +24,7 @@ export function Catalogue() {
     }
 
     function handlePaginationChange(e, value) {
-        return setPagination(state => ({ ...state, offset: (value - 1) * 8, page: value}));
+        return setPagination(state => ({ ...state, offset: (value - 1) * 8, page: value }));
     };
 
     return (

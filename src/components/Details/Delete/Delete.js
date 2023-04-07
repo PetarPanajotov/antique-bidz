@@ -17,7 +17,7 @@ export function DeleteBid({ token, antiqueId, onDeleteAntique }) {
     };
 
     function onCancel(e) {
-        setOpen(false)
+        setOpen(false);
     };
 
     return (
