@@ -1,14 +1,13 @@
 import { Box, Button, Grid, Modal, Typography } from "@mui/material";
-import React from "react";
 import styles from './Delete.module.css';
 import { deleteOne } from "../../../services/antiqueService";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 export function DeleteBid({ token, antiqueId, onDeleteAntique }) {
     const navigate = useNavigate()
-    const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
-
     async function onDeleteSubmit(e) {
         try {
             await deleteOne(antiqueId, token);
