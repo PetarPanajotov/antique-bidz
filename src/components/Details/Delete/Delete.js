@@ -9,10 +9,14 @@ export function DeleteBid({ token, antiqueId, onDeleteAntique }) {
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
 
-    async function onDelete(e) {
-        await deleteOne(antiqueId, token);
-        navigate('/catalogue');
-        onDeleteAntique(antiqueId);
+    async function onDeleteSubmit(e) {
+        try {
+            await deleteOne(antiqueId, token);
+            navigate('/catalogue');
+            onDeleteAntique(antiqueId);
+        } catch (err) {
+            console.log(err.message)
+        }
         setOpen(false);
     };
 
@@ -37,7 +41,7 @@ export function DeleteBid({ token, antiqueId, onDeleteAntique }) {
                             <Box>
                                 <Button variant='contained'
                                     className={`${styles['button-delete']} ${styles['button-conformation']}`}
-                                    onClick={onDelete}>
+                                    onClick={(e) => onDeleteSubmit(e)}>
                                     Delete
                                 </Button>
                                 <Button
