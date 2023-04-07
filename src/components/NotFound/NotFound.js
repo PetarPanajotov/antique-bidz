@@ -6,7 +6,7 @@ export function NotFound() {
         <Box className={styles['container']}>
             <Container maxWidth="md">
                 <Grid container spacing={2}>
-                    <Grid xs={12}>
+                    <Grid item xs={12}>
                         <Box className={styles['img-wrapper']}>
                             <img
                                 src='https://img.freepik.com/premium-vector/sad-emoticon-yellow-apps-websites_340607-156.jpg?w=2000'
