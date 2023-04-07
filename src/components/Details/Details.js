@@ -28,6 +28,8 @@ export function Details() {
         Promise.all([
             getOne(params.id),
             getAllBids(params.id)]).then(([antique, bids]) => {
+                //if startBid price is changed and there are bids less than startBid
+                bids = bids.filter(x => antique.bidDetails.startBid > x.bid? false:true)
                 if (bids.length > 0) {
                     antique.bidDetails.startBid = bids[0].bid
                 };

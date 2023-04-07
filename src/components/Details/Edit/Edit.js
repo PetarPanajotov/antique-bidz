@@ -32,7 +32,7 @@ export function Edit() {
     useEffect(() => {
         getOne(id)
             .then(data => {
-                changeValues(data);
+                changeValues({...data, bidDetails: {...data.bidDetails, endDate: ''}});
                 setSubCategoryOptions(categoriesOptions[data.category])
             })
             .catch(err =>  console.log(err.message));
