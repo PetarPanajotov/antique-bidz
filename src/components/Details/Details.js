@@ -1,7 +1,7 @@
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { Accordion, AccordionDetails, AccordionSummary, Box, Button, Container, Grid, ToggleButton, ToggleButtonGroup, Typography } from "@mui/material"
 import { useContext, useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useRemainingTime } from '../../hooks/useRemainingTime';
 import { getOne } from '../../services/antiqueService';
 import { dateConvert } from '../../utils/dateUtil';
@@ -20,6 +20,7 @@ export function Details() {
     const { formattedTime, setRemainingTime } = useRemainingTime(dateConvert(antiqueDetails.bidDetails?.endDate));
     const params = useParams();
     const isOwner = antiqueDetails._ownerId === auth._id;
+    const navigate = useNavigate()
     const handleChange = (e) => {
         setBid(e.target.value);
     };
@@ -37,7 +38,7 @@ export function Details() {
                 setLoading(false);
                 setAntiqueDetails({ ...antique, bids })
                 setRemainingTime(dateConvert(antique.bidDetails.endDate))
-            })
+            }).catch(err => navigate('/404'))
     }, [params.id, setRemainingTime]);
 
     if (loading) {

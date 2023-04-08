@@ -70,6 +70,7 @@ export function CreateBid() {
                                         label="Antique Name"
                                         name="antiqueName"
                                         value={formValues.name}
+                                        autoComplete="off"
                                         error={Boolean(errors.antiqueName)}
                                         required={true}
                                         helperText={errors.antiqueName}
@@ -84,6 +85,7 @@ export function CreateBid() {
                                         label="Image URL"
                                         name="imgURL"
                                         value={formValues.name}
+                                        autoComplete="off"
                                         required={true}
                                         error={Boolean(errors.imgURL)}
                                         helperText={errors.imgURL}
@@ -100,6 +102,7 @@ export function CreateBid() {
                                             label="Category"
                                             name="category"
                                             value={formValues.category}
+                                            autoComplete="off"
                                             required={true}
                                             error={Boolean(errors.category)}
                                             onBlur={(e) => onBlurErrorMessage(e)}
@@ -117,6 +120,7 @@ export function CreateBid() {
                                             label="Sub Category"
                                             name="subCategory"
                                             value={formValues.subCategory}
+                                            autoComplete="off"
                                             required={true}
                                             error={Boolean(errors.subCategory)}
                                             onBlur={(e) => onBlurErrorMessage(e)}
@@ -132,6 +136,7 @@ export function CreateBid() {
                                         label="Starting Bid Price"
                                         name="startBid"
                                         value={formValues.bidDetails.name}
+                                        autoComplete="off"
                                         required={true}
                                         error={Boolean(errors.startBid)}
                                         helperText={errors.startBid}
@@ -148,6 +153,7 @@ export function CreateBid() {
                                             label='Bid Duration'
                                             name='endDate'
                                             value={formValues.bidDetails.endDate}
+                                            autoComplete="off"
                                             required={true}
                                             error={Boolean(errors.endDate)}
                                             onBlur={(e) => onBlurErrorMessage(e)}
@@ -164,6 +170,7 @@ export function CreateBid() {
                                         label="Description"
                                         name="description"
                                         value={formValues.name}
+                                        autoComplete="off"
                                         required={true}
                                         error={Boolean(errors.description)}
                                         helperText={errors.description}

@@ -40,6 +40,7 @@ export function Catalogue() {
                         name="searchQuery"
                         value={searchValue}
                         onChange={onChange}
+                        autoComplete="off"
                         className={styles['catalogue-search-field']}
                         InputProps={{
                             startAdornment: <SearchIcon className={styles['catalogue-search-icon']} onClick={(e) => onSearchSubmit(e)}></SearchIcon>,

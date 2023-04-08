@@ -2,7 +2,7 @@ import { createContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { login, register } from "../services/authService";
 import { useLocalStorage } from "../hooks/useLocalStorage";
-// import { logout } from "../services/authService";
+import { logout } from "../services/authService";
 export const AuthContext = createContext();
 
 export function AuthProvider({ children }) {
@@ -27,9 +27,9 @@ export function AuthProvider({ children }) {
     const onSubmitRegister = async (e, formValues, resetFormValues, showNotification, errors) => {
         e.preventDefault();
         for (const value of Object.values(errors)) {
-          if (value) {
-            return showNotification(value)
-          };
+            if (value) {
+                return showNotification(value)
+            };
         };
         try {
             const data = await register({ formValues });
@@ -41,9 +41,13 @@ export function AuthProvider({ children }) {
         };
     };
 
-    const onLogout = async() => {
-        //because of react strict mode, this is removed for now in development mode.
-        // await logout(auth.accessToken);
+    const onLogout = async () => {
+        try {
+            await logout(auth.accessToken);
+        } catch (error) {
+            setAuth('auth', {})
+            console.log(error)
+        }
         setAuth({});
         navigate('/', { replace: true });
     };

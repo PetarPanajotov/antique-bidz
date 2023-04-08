@@ -88,6 +88,7 @@ export function Edit() {
                                         label="Antique Name"
                                         name="antiqueName"
                                         value={formValues.antiqueName}
+                                        autoComplete="off"
                                         required={true}
                                         error={Boolean(errors.antiqueName)}
                                         helperText={errors.antiqueName}
@@ -103,6 +104,7 @@ export function Edit() {
                                         label="Image URL"
                                         name="imgURL"
                                         value={formValues.imgURL}
+                                        autoComplete="off"
                                         required={true}
                                         error={Boolean(errors.imgURL)}
                                         helperText={errors.imgURL}
@@ -119,6 +121,7 @@ export function Edit() {
                                             label="Category"
                                             name="category"
                                             value={formValues.category}
+                                            autoComplete="off"
                                             required={true}
                                             error={Boolean(errors.category)}
                                             onBlur={(e) => onBlurErrorMessage(e)}
@@ -136,6 +139,7 @@ export function Edit() {
                                             label="Sub Category"
                                             name="subCategory"
                                             value={formValues.subCategory}
+                                            autoComplete="off"
                                             required={true}
                                             error={Boolean(errors.subCategory)}
                                             onBlur={(e) => onBlurErrorMessage(e)}
@@ -151,6 +155,7 @@ export function Edit() {
                                         label="Starting Bid Price"
                                         name="startBid"
                                         value={formValues.bidDetails.startBid}
+                                        autoComplete="off"
                                         required={true}
                                         error={Boolean(errors.startBid)}
                                         helperText={errors.startBid}
@@ -167,6 +172,7 @@ export function Edit() {
                                             label='Extend bid duration'
                                             name='endDate'
                                             value={formValues.bidDetails.endDate}
+                                            autoComplete="off"
                                             required={true}
                                             error={Boolean(errors.endDate)}
                                             onBlur={(e) => onBlurErrorMessage(e)}
@@ -183,6 +189,7 @@ export function Edit() {
                                         label="Description"
                                         name="description"
                                         value={formValues.description}
+                                        autoComplete="off"
                                         required={true}
                                         error={Boolean(errors.description)}
                                         helperText={errors.description}

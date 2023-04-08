@@ -1,5 +1,6 @@
 import { Box, Typography, Container, Grid, Button } from "@mui/material";
 import styles from './NotFound.module.css'
+import { Link } from "react-router-dom";
 
 export function NotFound() {
     return (
@@ -25,7 +26,7 @@ export function NotFound() {
                             The page you’re looking for doesn’t exist.
                         </Typography>
                         <Box className={styles['button-wrapper']} >
-                            <Button variant="contained" className={styles['text']}>Back Home</Button>
+                            <Link to={'/'}><Button variant="contained" className={styles['text']}>Back Home</Button></Link>
                         </Box>
                     </Grid>
                 </Grid>
