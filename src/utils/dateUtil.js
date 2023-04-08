@@ -1,5 +1,10 @@
-export function formatDuration(durationHours) {
-    let date = new Date();
+export function formatDuration(durationHours, oldDate) {
+    let date = null;
+    if (oldDate) {
+        date = new Date(oldDate)
+    } else {
+        date = new Date();
+    }
     date.setHours(date.getHours() + durationHours);
     const month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     const formattedDate = (`${date.getDate()} ${(month[date.getMonth()])}, ${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`);
