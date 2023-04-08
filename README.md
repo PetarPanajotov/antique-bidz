@@ -1,70 +1,73 @@
-# Getting Started with Create React App
+# Introduction
+Antiquebids is a website developed using React for the SoftUni course defense (09.April.2023). The platform allows users to place bids or create their own bids.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
-
-In the project directory, you can run:
-
+## Installation
+```bash
+$git clone https://github.com/PetarPanajotov/antique-bidz.git
+```
+To clone the whole project.
+### `npm install`
+To install all required dependencies in order to run the project.
 ### `npm start`
-
-Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### `cd server`
+Redirects you to the server directory.
+### `node server.js`
+To start the server on [http://localhost:3030](http://localhost:3030)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Authentication
+To login, you can use one of the following pre-register accounts:
+- email: peter@abv.bg password: 123456
+- email: george@abv.bg password: 123456
+- email: admin@abv.bg password: admin
 
-### `npm run build`
+Or just make an account with your email, first name, last name, password. The server will login you automatically.
+## Navigation
+Navigation changes based on if you are logged user or guest.
+ 
+Users can access and see:
+- Home
+- Catalogue
+- Details
+- Create bid
+- Logout
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Guests can access and see:
+- Home
+- Catalogue
+- Details
+- Login
+- Register
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Database
+SoftUni practice server -  [https://github.com/softuni-practice-server/softuni-practice-server#usage](https://github.com/softuni-practice-server/softuni-practice-server#usage)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Functionality
+Users can access the following functionality:
+- Create a bid
+- Place a bid
 
-### `npm run eject`
+If the following user is an owner of the viewed bid details, he also can:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- Delete a bid
+- Edit a bid
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Owner of the following antique cannot bid! The bid system is only for users who are not owner of the material.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Note that changes to the data will not be persisted! All operations happen in memory and will be wiped when the service is restarted.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Used technologies
+- HTML
+- CSS
+- Material UI
+- React
+- node.js
 
-## Learn More
+## Disclaimer
+The resources used in this site are intended solely for educational purposes. The resources are not owned or created by the app developer and are used with permission or in accordance with fair use guidelines. The accuracy, reliability, and legal rights of the images provided are not guaranteed. Any reliance on the resources presented in this app is at the user's own risk.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## License
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+[MIT](https://choosealicense.com/licenses/mit/)
