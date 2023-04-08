@@ -1,5 +1,5 @@
 export const categoriesOptions = {
-    'Furniture': ['Chairs', 'Tables', 'Cabinets', 'Desks', 'Beds', 'Chests'],
+    'Furnitures': ['Chairs', 'Tables', 'Cabinets', 'Desks', 'Beds', 'Chests', 'Wardrobes'],
     'Decorative Arts': ['Ceramics and Pottery', 'Glassware', 'Metalware', 'Textiles', 'Folk Art'],
     'Fine Arts': ['Paintings', 'Sculptures', 'Drawnings and Prints', 'Photography'],
     'Jewelry and Watches': ['Rings', 'Necklaces', 'Earrings', 'Bracelets', 'Pocket Watches'],
@@ -7,5 +7,5 @@ export const categoriesOptions = {
     'Lightnings': ['Chandeliers', 'Lamps', 'Candlesticks'],
     'Musical Instruments': ['String Instruments', 'Wind Instruments', 'Percussion Instruments'],
     'Books and Manuscripts': ['Rare Books', 'Historical Documents', 'Maps and Atlases', 'Autographs and Signatures', 'Manuscripts']
-}
-export const durationOptions = [24, 48, 72, 168]
+};
+export const durationOptions = [24, 48, 72, 168];
