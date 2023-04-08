@@ -68,6 +68,8 @@ Note that changes to the data will not be persisted! All operations happen in me
 ## Disclaimer
 The resources used in this site are intended solely for educational purposes. The resources are not owned or created by the app developer and are used with permission or in accordance with fair use guidelines. The accuracy, reliability, and legal rights of the images provided are not guaranteed. Any reliance on the resources presented in this app is at the user's own risk.
 
+## Screenshots
+![Screenshot](notLoggedUsers.png)
 ## License
 
 [MIT](https://choosealicense.com/licenses/mit/)
