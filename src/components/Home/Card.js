@@ -6,7 +6,7 @@ import { useRemainingTime } from "../../hooks/useRemainingTime";
 import { dateConvert } from "../../utils/dateUtil";
 import { Link } from "react-router-dom";
 
-export function Card({antique}) {
+export function Card({ antique }) {
     const { formattedTime } = useRemainingTime(dateConvert(antique.bidDetails.endDate));
 
     return (
@@ -17,7 +17,7 @@ export function Card({antique}) {
                         <Box>
                             <img
                                 src={antique.imgURL}
-                                alt='some'
+                                alt=''
                                 className={styles['card-image']}
                             ></img>
                         </Box>
