@@ -16,7 +16,8 @@ export function Edit() {
     const [subCategoryOptions, setSubCategoryOptions] = useState([]);
     const categoryOptions = Object.keys(categoriesOptions);
     const { errorNotification, showNotification } = useErrorNotification('');
-    const { formValues, onChange, changeValues, resetFormValues } = useForm({
+    const [initialDate, setInitialDate] = useState('');
+    const { formValues, onChange, changeValues } = useForm({
         antiqueName: '',
         imgURL: '',
         category: '',
@@ -27,11 +28,13 @@ export function Edit() {
         },
         description: ''
     });
+
     const { id } = useParams();
 
     useEffect(() => {
         getOne(id)
             .then(data => {
+                setInitialDate(data.bidDetails.endDate);
                 changeValues({...data, bidDetails: {...data.bidDetails, endDate: ''}});
                 setSubCategoryOptions(categoriesOptions[data.category])
             })
@@ -43,7 +46,7 @@ export function Edit() {
     }, [formValues.category]);
 
     return (
-        <form onSubmit={(e) => onEditAntiqueSubmit(e, id, formValues, auth.accessToken, showNotification, resetFormValues)}>
+        <form onSubmit={(e) => onEditAntiqueSubmit(e, id, formValues, auth.accessToken, showNotification, initialDate)}>
             <Container maxWidth='lg' className={styles['container']}>
                 <Paper elevation={23}>
                 <Box height={'50px'}>
