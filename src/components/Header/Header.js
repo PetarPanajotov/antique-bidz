@@ -11,7 +11,7 @@ export function Header() {
         <ElevationScroll>
             <AppBar className={styles['container']}>
                 <Toolbar disableGutters>
-                    <Typography sx={{ textDecoration: 'underline' }}>AntiqueBidz</Typography>
+                    <Typography variant="h5" sx={{ textDecoration: 'underline', fontFamily: 'Georgia, serif', paddingLeft: '10px' }}>AntiqueBidz</Typography>
                     <Box className={styles['nav-links-wrapper']}>
                         <Link to={"/"}><Typography className={styles["nav-links"]}>Home</Typography></Link>
                         <Link to={"/catalogue"}><Typography className={styles["nav-links"]}>Catalogue</Typography></Link>
