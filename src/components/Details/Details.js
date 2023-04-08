@@ -30,7 +30,7 @@ export function Details() {
             getOne(params.id),
             getAllBids(params.id)]).then(([antique, bids]) => {
                 //if startBid price is changed and there are bids less than startBid
-                bids = bids.filter(x => antique.bidDetails.startBid > x.bid? false:true)
+                bids = bids.filter(x => antique.bidDetails.startBid > x.bid ? false : true)
                 if (bids.length > 0) {
                     antique.bidDetails.startBid = bids[0].bid
                 };
@@ -101,7 +101,7 @@ export function Details() {
                             <Box>
                                 <Typography variant="h5">${antiqueDetails.bidDetails?.startBid}</Typography>
                             </Box>
-                            {!isOwner && user && 
+                            {!isOwner && user &&
                                 <Box paddingTop={1}>
                                     <ToggleButtonGroup
                                         value={bid}
@@ -135,7 +135,9 @@ export function Details() {
                         </Box>
                     </Box>
                     <Box className={styles['description-wrapper']}>
-                        <Accordion>
+                        <Accordion
+                            defaultExpanded={true}
+                        >
                             <AccordionSummary
                                 expandIcon={<ExpandMoreIcon />}
                             >
@@ -148,18 +150,15 @@ export function Details() {
                         <Accordion>
                             <AccordionSummary
                                 expandIcon={<ExpandMoreIcon />}
+                                expanded
                             >
                                 <Typography>Highest Bids</Typography>
                             </AccordionSummary>
                             <AccordionDetails>
-                                {antiqueDetails.bids?.map(x => <Typography key={x._id}>{x.author.email} - ${x.bid}</Typography>)}
+                                {antiqueDetails.bids?.length > 0 ? antiqueDetails.bids?.map(x => <Typography key={x._id}>{x.author.email} - ${x.bid}</Typography>)
+                                    : <Typography variant='h4' sx={{ textAlign: 'center' }}>There are no bids</Typography>}
                             </AccordionDetails>
                         </Accordion>
-                    </Box>
-                </Grid>
-                <Grid item xs={12}>
-                    <Box sx={{ textAlign: 'center', paddingTop: '35px' }}>
-                        <Typography variant='h4'>Other items from this seller:</Typography>
                     </Box>
                 </Grid>
             </Grid>

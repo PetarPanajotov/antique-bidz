@@ -3,7 +3,7 @@ import styles from "./Edit.module.css"
 import { useContext, useEffect, useState } from "react";
 import { useForm } from "../../../hooks/useForm";
 import { categoriesOptions } from "../../../utils/selectOptions";
-import { durationOptions } from "../../../utils/selectOptions";
+import { editDurationOptions } from "../../../utils/selectOptions";
 import { getOne } from "../../../services/antiqueService";
 import { useParams } from "react-router-dom";
 import { AntiqueContext } from "../../../contexts/AntiqueContext";
@@ -164,7 +164,7 @@ export function Edit() {
                                         <InputLabel id='bid-duration-label'>Bid Duration</InputLabel>
                                         <Select
                                             labelId="bid-duration-label"
-                                            label='Bid Duration'
+                                            label='Extend bid duration'
                                             name='endDate'
                                             value={formValues.bidDetails.endDate}
                                             required={true}
@@ -172,7 +172,7 @@ export function Edit() {
                                             onBlur={(e) => onBlurErrorMessage(e)}
                                             onChange={onChange}
                                         >
-                                            {durationOptions.map(x => <MenuItem key={x} value={x}>{x} Hours</MenuItem>)}
+                                            {editDurationOptions.map(x => <MenuItem key={x} value={x}>{x} Hours</MenuItem>)}
                                         </Select>
                                     </FormControl>
                                 </Box>

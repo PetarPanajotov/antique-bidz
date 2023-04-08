@@ -58,7 +58,7 @@ export function validateAntique(target) {
             return 'Please select valid sub category.'
         }
     } else if (target.name === 'endDate') {
-        if (!target.value) {
+        if (target.value === '') {
             return 'Please select valid duration'
         }
     } else if (target.name === 'startBid') {

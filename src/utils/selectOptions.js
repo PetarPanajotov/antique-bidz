@@ -9,3 +9,4 @@ export const categoriesOptions = {
     'Books and Manuscripts': ['Rare Books', 'Historical Documents', 'Maps and Atlases', 'Autographs and Signatures', 'Manuscripts']
 };
 export const durationOptions = [24, 48, 72, 168];
+export const editDurationOptions = [0, 24, 48, 72, 168];

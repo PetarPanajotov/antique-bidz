@@ -118,7 +118,7 @@ export function AntiqueProvider({ children }) {
                 return showNotification(value);
             };
         };
-        if (!formValues.subCategory || !formValues.category || !formValues.bidDetails.endDate) {
+        if (!formValues.subCategory || !formValues.category || formValues.bidDetails.endDate === '') {
             return showNotification('Missing fields. Please try again.');
         };
         try {
