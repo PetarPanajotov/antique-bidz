@@ -126,6 +126,10 @@ export function AntiqueProvider({ children }) {
         };
     };
 
+    const findAntiqueById = (antiqueId) => {
+        return antiqueData.find(antique => antique._id === antiqueId);
+    };
+
     const ctx = {
         antiqueData,
         collectionCount,
@@ -138,7 +142,8 @@ export function AntiqueProvider({ children }) {
         onSearchSubmit,
         onCreateAntiqueSubmit,
         onEditAntiqueSubmit,
-        onBlurErrorMessage
+        onBlurErrorMessage,
+        findAntiqueById
     };
 
     return (

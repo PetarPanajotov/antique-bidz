@@ -15,6 +15,7 @@ import { Edit } from "./components/Details/Edit/Edit";
 import { Logout } from "./components/Logout/Logout";
 import { GuestRouteGuard } from "./components/common/GuestRouteGuard";
 import { UserRouteGuard } from "./components/common/UserRouteGuard";
+import { OwnerRouteGuard } from "./components/common/OwnerRouteGuard";
 
 function App() {
     return (
@@ -28,7 +29,9 @@ function App() {
                             <Route path="/home" element={<Home />} />
                             <Route path="/catalogue" element={<Catalogue />} />
                             <Route path="/catalogue/details/:id" element={<Details />} />
-                            <Route path="/catalogue/details/:id/edit" element={<Edit />} />
+                            <Route element={<OwnerRouteGuard />}>
+                                <Route path="/catalogue/details/:id/edit" element={<Edit />} />
+                            </Route>
                             <Route element={<GuestRouteGuard />}>
                                 <Route path="/create" element={<CreateBid />} />
                                 <Route path="/logout" element={<Logout />} />
