@@ -10,21 +10,22 @@ import styles from "./Details.module.css";
 import { AuthContext } from '../../contexts/AuthContext';
 import { AntiqueContext } from '../../contexts/AntiqueContext';
 import { getAllBids, postCreateBid } from '../../services/bidService';
+import { Spinner } from '../Spinner/Spinner';
 
 export function Details() {
     const { auth, user } = useContext(AuthContext);
-    const { onDeleteAntique, handleUpdateCurrentHighestBid } = useContext(AntiqueContext);
+    const { onDeleteAntique, handleUpdateCurrentHighestBid, loading, setLoading } = useContext(AntiqueContext);
     const [antiqueDetails, setAntiqueDetails] = useState({});
     const [bid, setBid] = useState('');
     const { formattedTime, setRemainingTime } = useRemainingTime(dateConvert(antiqueDetails.bidDetails?.endDate));
     const params = useParams();
     const isOwner = antiqueDetails._ownerId === auth._id;
-
     const handleChange = (e) => {
         setBid(e.target.value);
     };
 
     useEffect(() => {
+        setLoading(true)
         Promise.all([
             getOne(params.id),
             getAllBids(params.id)]).then(([antique, bids]) => {
@@ -33,10 +34,19 @@ export function Details() {
                 if (bids.length > 0) {
                     antique.bidDetails.startBid = bids[0].bid
                 };
+                setLoading(false);
                 setAntiqueDetails({ ...antique, bids })
                 setRemainingTime(dateConvert(antique.bidDetails.endDate))
             })
     }, [params.id, setRemainingTime]);
+
+    if (loading) {
+        return (
+            <>
+                <Spinner />
+            </>
+        );
+    };
 
     const onPlaceBidClick = async (e) => {
         if (!bid) {

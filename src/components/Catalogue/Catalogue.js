@@ -5,9 +5,10 @@ import ClearIcon from '@mui/icons-material/Clear';
 import styles from './Catalogue.module.css'
 import { useContext, useState } from "react";
 import { AntiqueContext } from "../../contexts/AntiqueContext";
+import { Spinner } from "../Spinner/Spinner";
 
 export function Catalogue() {
-    const { antiqueData, collectionCount, handlePaginationChange, onSearchSubmit, setSearch, pagination } = useContext(AntiqueContext);
+    const { antiqueData, collectionCount, handlePaginationChange, onSearchSubmit, setSearch, pagination, loading } = useContext(AntiqueContext);
     const [searchValue, setSearchValue] = useState('');
 
     function onChange(e) {
@@ -21,6 +22,13 @@ export function Catalogue() {
         e.target.value = '';
         setSearchValue('');
         setSearch('');
+    };
+    if (loading) {
+        return (
+            <>
+                <Spinner />
+            </>
+        );
     };
 
     return (

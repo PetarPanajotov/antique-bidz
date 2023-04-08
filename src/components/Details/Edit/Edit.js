@@ -9,9 +9,10 @@ import { useParams } from "react-router-dom";
 import { AntiqueContext } from "../../../contexts/AntiqueContext";
 import { AuthContext } from "../../../contexts/AuthContext";
 import { useErrorNotification } from "../../../hooks/useErrorNotification";
+import { Spinner } from "../../Spinner/Spinner";
 
 export function Edit() {
-    const { onEditAntiqueSubmit, errors, onBlurErrorMessage } = useContext(AntiqueContext);
+    const { onEditAntiqueSubmit, errors, onBlurErrorMessage, loading, setLoading } = useContext(AntiqueContext);
     const { auth } = useContext(AuthContext);
     const [subCategoryOptions, setSubCategoryOptions] = useState([]);
     const categoryOptions = Object.keys(categoriesOptions);
@@ -32,11 +33,13 @@ export function Edit() {
     const { id } = useParams();
 
     useEffect(() => {
+        setLoading(true)
         getOne(id)
             .then(data => {
                 setInitialDate(data.bidDetails.endDate);
                 changeValues({...data, bidDetails: {...data.bidDetails, endDate: ''}});
                 setSubCategoryOptions(categoriesOptions[data.category])
+                setLoading(false)
             })
             .catch(err =>  console.log(err.message));
     }, [id]);
@@ -44,6 +47,15 @@ export function Edit() {
     useEffect(() => {
         setSubCategoryOptions(categoriesOptions[formValues.category]);
     }, [formValues.category]);
+
+    if (loading) {
+        return (
+            <>
+                <Spinner />
+            </>
+        );
+    };
+
 
     return (
         <form onSubmit={(e) => onEditAntiqueSubmit(e, id, formValues, auth.accessToken, showNotification, initialDate)}>

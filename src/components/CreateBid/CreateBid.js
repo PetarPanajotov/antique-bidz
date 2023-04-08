@@ -6,10 +6,11 @@ import { useForm } from "../../hooks/useForm";
 import { AuthContext } from "../../contexts/AuthContext";
 import { AntiqueContext } from "../../contexts/AntiqueContext";
 import { useErrorNotification } from "../../hooks/useErrorNotification";
+import { Spinner } from "../Spinner/Spinner";
 
 export function CreateBid() {
     const { auth } = useContext(AuthContext);
-    const { onCreateAntiqueSubmit, onBlurErrorMessage, errors } = useContext(AntiqueContext);
+    const { onCreateAntiqueSubmit, onBlurErrorMessage, errors, loading } = useContext(AntiqueContext);
     const [subCategoryOptions, setSubCategoryOptions] = useState([]);
     const { errorNotification, showNotification } = useErrorNotification('');
     const { formValues, onChange } = useForm({
@@ -29,6 +30,15 @@ export function CreateBid() {
     useEffect(() => {
         setSubCategoryOptions(categoriesOptions[formValues.category]);
     }, [formValues.category]);
+
+    if (loading) {
+        return (
+            <>
+                <Spinner />
+            </>
+        );
+    };
+
 
     return (
         <form onSubmit={(e) => onCreateAntiqueSubmit(e, formValues, auth.accessToken, showNotification)}>

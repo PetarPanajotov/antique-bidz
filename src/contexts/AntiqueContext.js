@@ -32,6 +32,7 @@ export function AntiqueProvider({ children }) {
     }, [location.pathname]);
 
     useEffect(() => {
+        setLoading(true)
         let promise;
         if (!search) {
             promise = Promise.all([getAll(pagination.offset), getCollectionSize(), getAllBids()]);
@@ -80,7 +81,11 @@ export function AntiqueProvider({ children }) {
         if (!searchValue) {
             return;
         };
+        if (searchValue === search) {
+            return;
+        }
         resetPaginationState();
+        setLoading(true);
         setSearch(searchValue);
     };
 
@@ -95,6 +100,7 @@ export function AntiqueProvider({ children }) {
             return showNotification('Missing fields. Please try again.');
         };
         try {
+            setLoading(true);
             const duration = formValues.bidDetails.endDate
             formValues.bidDetails.endDate = formatDuration(duration)
             await postCreate(formValues, token);
@@ -116,6 +122,7 @@ export function AntiqueProvider({ children }) {
             return showNotification('Missing fields. Please try again.');
         };
         try {
+            setLoading(true);
             //get the duration in hours, adding it to the old one in order to extend the bid duration
             formValues.bidDetails.endDate = formatDuration(formValues.bidDetails.endDate, initialDate);
             const editedValues = await putEdit(antiqueId, formValues, token);
@@ -136,6 +143,7 @@ export function AntiqueProvider({ children }) {
         pagination,
         errors,
         loading,
+        setLoading,
         setSearch,
         findAntiqueById,
         handlePaginationChange,
