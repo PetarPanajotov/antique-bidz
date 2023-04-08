@@ -1351,7 +1351,7 @@
                 subCategory: 'Tables',
                 bidDetails: {
                     startBid: 115,
-                    endDate: '29 March 2023'
+                    endDate: '11 April 2023'
                 },
                 description: 'Antique Rhode Island Tavern Table, pegged construction with block and turned legs and stretcher base, circular pine top, shaped pine skirt.'
             },
@@ -1365,7 +1365,7 @@
                 subCategory: 'Paintings',
                 bidDetails: {
                     startBid: 315,
-                    endDate: '30 March 2023'
+                    endDate: '10 April 2023'
                 },
                 description: 'Mellie Cooper (American, Contemporary b. 1949) Acrylic on Hand Made, Cast and Assembled Paper “Allied Flags Surrounding a Clipper Ship Cartouche” with cast paper scallop shell border, in a molded wood Frame.'
             },
@@ -1375,11 +1375,11 @@
                 _createdOn: 1613551388723,
                 antiqueName: 'Antique American Folk Art Four-Drawer Salesman Sample Chest of Drawers',
                 imgURL: 'https://dn9ml16rd2hb8.cloudfront.net/2023/03/3131-955-Miniature-Chest-A-380x405.jpg',
-                category: 'Furniture',
+                category: 'Furnitures',
                 subCategory: 'Chests',
                 bidDetails: {
                     startBid: 1115,
-                    endDate: '30 March 2023'
+                    endDate: '11 April 2023'
                 },
                 description: 'Antique American Folk Art Four-Drawer Salesman Sample Chest of Drawers, with foliate relief carving throughout, constructed of boxwood, with porcelain knobs.'
             },
@@ -1387,85 +1387,85 @@
                 _id: '8b80d296-c3f1-11ed-afa1-0242ac120002',
                 _ownerId: '847ec027-f659-4086-8032-5173e2f9c93a',
                 _createdOn: 1613551388733,
-                antiqueName: 'Antique Rhode Island Tavern Table',
-                imgURL: 'https://dn9ml16rd2hb8.cloudfront.net/2023/03/94-3583-Rhode-Island-Tavern-Table-A-IMG_9494-319x405.jpg',
+                antiqueName: 'Leather Wardrobe/travel Trunk By P.Romand',
+                imgURL: 'https://www.sellingantiques.co.uk/photosnew/dealer_henrycharles/dealer_henrycharles_highres_1680816991719-7366232139.jpg',
                 category: 'Furnitures',
-                subCategory: 'Tables',
+                subCategory: 'Wardrobes',
                 bidDetails: {
-                    startBid: 115,
-                    endDate: '29 March 2023'
+                    startBid: 2500,
+                    endDate: '14 April 2023'
                 },
-                description: 'Antique Rhode Island Tavern Table, pegged construction with block and turned legs and stretcher base, circular pine top, shaped pine skirt.'
+                description: 'A very fine and rare Leather wardrobe, travel trunk by P.Romand 213 Rue St Honore Paris. Superb quality leather in both colour and Patina. Single brass lock. Stamped P.Romand Paris'
             },
             "1b86196-c3f1-11fd-afa4-0242ac120321": {
                 _id: '1b86196-c3f1-11fd-afa4-0242ac120321',
                 _ownerId: '35c62d76-8152-4626-8712-eeb96381bea8',
                 _createdOn: 1613551388743,
-                antiqueName: 'Mellie Cooper Acrylic on Hand Made Paper “Allied Flags Surrounding a Clipper Ship Cartouche',
-                imgURL: 'https://dn9ml16rd2hb8.cloudfront.net/2022/11/6-5223-Mellie-Cooper-Acrylic-of-Clipper-Ship-A_IMG_6166-517x405.jpg',
+                antiqueName: '1970 Mid-Century Modern "Lake Land" Swedish Vintage Landscape Oil Painting, Framed',
+                imgURL: 'https://www.antiquesboutique.com/upload/images/shopprod/131417/1970-mid-century-modern-lake-land-swedish-vintage-landscape-oil-painting-framed_131417_pic1_size2.webp',
                 category: 'Fine Arts',
                 subCategory: 'Paintings',
                 bidDetails: {
-                    startBid: 315,
-                    endDate: '30 March 2023'
+                    startBid: 910,
+                    endDate: '13 April 2023'
                 },
-                description: 'Mellie Cooper (American, Contemporary b. 1949) Acrylic on Hand Made, Cast and Assembled Paper “Allied Flags Surrounding a Clipper Ship Cartouche” with cast paper scallop shell border, in a molded wood Frame.'
+                description: 'In this picture, two boats sit in shallow waters, and behind them we see a small cottage that is backed by mountains. The artist has painted in distinctly separate planes of colour, using a tiered effect of complementary colours that gives the composition its depth. The palette is restrained, dominated mainly by blues, yellows, greys and browns. The brushstrokes are visible, giving us a sense of the artist’s process of creation as well as giving the painting a textured effect. The painting has a very restful ambience to it, and would be such a fine addition to any interior.'
             },
             "1515196-c3f1-1132-afa7-0322ac120321": {
                 _id: '1515196-c3f1-1132-afa7-0322ac120321',
                 _ownerId: '35c62d76-8152-4626-8712-eeb96381bea8',
                 _createdOn: 1613551388753,
-                antiqueName: 'Antique American Folk Art Four-Drawer Salesman Sample Chest of Drawers',
-                imgURL: 'https://dn9ml16rd2hb8.cloudfront.net/2023/03/3131-955-Miniature-Chest-A-380x405.jpg',
-                category: 'Furniture',
-                subCategory: 'Chests',
+                antiqueName: 'Fred Cecil Jones "A Cart shed at Pudsey" watercolour',
+                imgURL: 'https://www.antiquesboutique.com/upload/images/shopprod/117705/fred-cecil-jones-a-cart-shed-at-pudsey-watercolour_117705_pic1_size4.webp',
+                category: 'Fine Arts',
+                subCategory: 'Paintings',
                 bidDetails: {
-                    startBid: 1115,
-                    endDate: '30 March 2023'
+                    startBid: 550,
+                    endDate: '12 April 2023'
                 },
-                description: 'Antique American Folk Art Four-Drawer Salesman Sample Chest of Drawers, with foliate relief carving throughout, constructed of boxwood, with porcelain knobs.'
+                description: 'Fred Cecil Jones was born in Bradford in 1891. He was the son of artist Maud Raphael Jones and studied at Bradford College of Art, 1915 -16, and also part-time at Leeds College of Art. In 1916 Fred volunteered for the Army. His artistic talent was recognised and he served as a reconnaissance artist, where he gained the nickname, "Detail Jones", for the quality of his work. He briefly taught other Army artists the skill of panoramic reconnaissance drawing, but served most of his time on the Western Front until the close of the war. After the war he drew and painted the towns and cities of North England, with work again characterized by its close observation and attention to detail. He exhibited throughout UK and his work is now in many private and public collections.'
             },
             "1515196-c3f1-1182-afa7-0322ac120321": {
                 _id: '1515196-c3f1-1182-afa7-0322ac120321',
                 _ownerId: '35c62d76-8152-4626-8712-eeb96381bea8',
                 _createdOn: 1613551388763,
-                antiqueName: 'Antique American Folk Art Four-Drawer Salesman Sample Chest of Drawers',
-                imgURL: 'https://dn9ml16rd2hb8.cloudfront.net/2023/03/3131-955-Miniature-Chest-A-380x405.jpg',
-                category: 'Furniture',
-                subCategory: 'Chests',
+                antiqueName: 'Edwardian Mahogany Pedestal Desk',
+                imgURL: 'https://www.antiquesboutique.com/upload/images/shopprod/129967/edwardian-mahogany-pedestal-desk_129967_pic1_size4.webp',
+                category: 'Furnitures',
+                subCategory: 'Desks',
                 bidDetails: {
-                    startBid: 1115,
-                    endDate: '30 March 2023'
+                    startBid: 750,
+                    endDate: '14 April 2023'
                 },
-                description: 'Antique American Folk Art Four-Drawer Salesman Sample Chest of Drawers, with foliate relief carving throughout, constructed of boxwood, with porcelain knobs.'
+                description: 'For sale is a good quality Edwardian mahogany pedestal desk, having an inset leather skiver, decorated with gold tooling, above two pedestals each with graduated drawers with carved fronts and original brass handles above a plinth base. The desk is polished on all sides making it free standing and remains in very good condition for its age. This piece comes apart into three sections for ease of transport. '
             },
             "1515196-c3f1-1182-afa7-0322ac121321": {
                 _id: '1515196-c3f1-1182-afa7-0322ac121321',
                 _ownerId: '35c62d76-8152-4626-8712-eeb96381bea8',
                 _createdOn: 1613551388773,
-                antiqueName: 'Antique American Folk Art Four-Drawer Salesman Sample Chest of Drawers',
-                imgURL: 'https://dn9ml16rd2hb8.cloudfront.net/2023/03/3131-955-Miniature-Chest-A-380x405.jpg',
-                category: 'Furniture',
-                subCategory: 'Chests',
+                antiqueName: `An Edwardian Lady's Desk`,
+                imgURL: 'https://www.antiquesboutique.com/upload/images/shopprod/125260/an-edwardian-lady-s-desk_125260_pic1_size4.webp',
+                category: 'Furnitures',
+                subCategory: 'Desks',
                 bidDetails: {
-                    startBid: 1115,
-                    endDate: '30 March 2023'
+                    startBid: 765,
+                    endDate: '17 April 2023'
                 },
-                description: 'Antique American Folk Art Four-Drawer Salesman Sample Chest of Drawers, with foliate relief carving throughout, constructed of boxwood, with porcelain knobs.'
+                description: 'An Attractive Edwardian Ladys Desk with two small drawers each side on top piece and two small drawers each side with larger middle drawer to desk. Total Height with top is 96 cm, slight wear to leather but ok and on castors'
             },
             "1515196-c3f1-1182-afa7-5322ac120321": {
                 _id: '1515196-c3f1-1182-afa7-5322ac120321',
                 _ownerId: '35c62d76-8152-4626-8712-eeb96381bea8',
                 _createdOn: 1613551388783,
-                antiqueName: 'Antique American Folk Art Four-Drawer Salesman Sample Chest of Drawers',
-                imgURL: 'https://dn9ml16rd2hb8.cloudfront.net/2023/03/3131-955-Miniature-Chest-A-380x405.jpg',
-                category: 'Furniture',
-                subCategory: 'Chests',
+                antiqueName: 'Victorian Antique Pine Windsor Armchair',
+                imgURL: 'https://www.antiquesboutique.com/upload/images/shopprod/131392/victorian-antique-pine-windsor-armchair_131392_pic1_size4.webp',
+                category: 'Furnitures',
+                subCategory: 'Chairs',
                 bidDetails: {
-                    startBid: 1115,
-                    endDate: '30 March 2023'
+                    startBid: 395,
+                    endDate: '10 April 2023'
                 },
-                description: 'Antique American Folk Art Four-Drawer Salesman Sample Chest of Drawers, with foliate relief carving throughout, constructed of boxwood, with porcelain knobs.'
+                description: 'An attractive Victorian antique pine Windsor armchair. The antique Windsor armchair has a slat back with shaped arms, raised on turned supports. The Victorian armchair has a solid pine seat, raised on four turned legs with H stretcher supports. A particularly pleasing example, finished with a fresh coat of natural wax.'
             }
         },
         bids: {},
