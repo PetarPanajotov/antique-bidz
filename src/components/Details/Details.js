@@ -150,7 +150,6 @@ export function Details() {
                         <Accordion>
                             <AccordionSummary
                                 expandIcon={<ExpandMoreIcon />}
-                                expanded
                             >
                                 <Typography>Highest Bids</Typography>
                             </AccordionSummary>
