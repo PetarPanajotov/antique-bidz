@@ -13,6 +13,7 @@ import { AntiqueProvider } from "./contexts/AntiqueContext";
 import { AuthProvider } from "./contexts/AuthContext";
 import { Edit } from "./components/Details/Edit/Edit";
 import { Logout } from "./components/Logout/Logout";
+import { UserRouteGuard } from "./components/common/UserRouteGuard";
 
 function App() {
     return (
@@ -27,10 +28,12 @@ function App() {
                             <Route path="/catalogue" element={<Catalogue />} />
                             <Route path="/catalogue/details/:id" element={<Details />} />
                             <Route path="/catalogue/details/:id/edit" element={<Edit />} />
-                            <Route path="/create" element={<CreateBid />} />
+                            <Route element={<UserRouteGuard />}>
+                                <Route path="/create" element={<CreateBid />} />
+                                <Route path="/logout" element={<Logout />} />
+                            </Route>
                             <Route path="/login" element={<Login />} />
                             <Route path="/register" element={<Register />} />
-                            <Route path="/logout" element={<Logout />} />
                             <Route path="*" element={<NotFound />} />
                         </Routes>
                         <Footer />
