@@ -1,14 +1,13 @@
 import { createContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { login, register } from "../services/authService";
+import { useLocalStorage } from "../hooks/useLocalStorage";
 // import { logout } from "../services/authService";
 export const AuthContext = createContext();
 
 export function AuthProvider({ children }) {
-    const [auth, setAuth] = useState({});
+    const [auth, setAuth] = useLocalStorage('auth', {});
     const navigate = useNavigate();
-
-    const user = auth.accessToken? true: false;
 
     const onSubmitLogin = async (e, formValues, resetFormValues, showNotification) => {
         e.preventDefault();
@@ -52,7 +51,7 @@ export function AuthProvider({ children }) {
     const ctx = {
         auth,
         setAuth,
-        user,
+        user: !!auth.accessToken,
         onLogout,
         onSubmitLogin,
         onSubmitRegister,
