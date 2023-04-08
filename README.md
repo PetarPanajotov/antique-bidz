@@ -69,7 +69,24 @@ Note that changes to the data will not be persisted! All operations happen in me
 The resources used in this site are intended solely for educational purposes. The resources are not owned or created by the app developer and are used with permission or in accordance with fair use guidelines. The accuracy, reliability, and legal rights of the images provided are not guaranteed. Any reliance on the resources presented in this app is at the user's own risk.
 
 ## Screenshots
+Home page for not logged in users:
 ![Screenshot](notLoggedUsers.png)
+
+Home page for logged in users:
+![Screenshot](users.png)
+
+Catalogue page:
+![Screenshot](catalogue.png)
+
+Details page for logged in users and owners of the antique:
+![Screenshot](detailsLoggedOwner.png)
+
+Details page for logged in users but not owners of the antique:
+![Screenshot](detailsLoggedNotOwner.png)
+
+Edit page for only logged in users and owner of the antique:
+![Screenshot](editPage.png)
+
 ## License
 
 [MIT](https://choosealicense.com/licenses/mit/)
