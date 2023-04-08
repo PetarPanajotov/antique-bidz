@@ -13,11 +13,13 @@ export async function getBySearch(query, offset) {
     const sortQuery = encodeURI(`?sortBy=_createdOn desc`);
     const searchQuery = encodeURI(`where=antiqueName LIKE "${query}"`);
     const paginationQuery = encodeURI(`offset=${offset}&pageSize=${pageSize}`);
-    const data = await GET(`/data/antiques${sortQuery}&${searchQuery}&${paginationQuery}`);
-    const count = await GET(`/data/antiques?${searchQuery}&count`);
-    return {data, count};
+    return GET(`/data/antiques${sortQuery}&${searchQuery}&${paginationQuery}`)
 };
-export function getCollectionSize() {
+export function getCollectionSize(query) {
+    if(query) {
+        let searchQuery = encodeURI(`where=antiqueName LIKE "${query}"`)
+        return GET(`/data/antiques?${searchQuery}&count`)
+    }
     return GET(`/data/antiques?count`)
 };
 export function getOne(id) {

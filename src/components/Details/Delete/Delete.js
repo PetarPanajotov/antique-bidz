@@ -1,23 +1,12 @@
 import { Box, Button, Grid, Modal, Typography } from "@mui/material";
 import styles from './Delete.module.css';
-import { deleteOne } from "../../../services/antiqueService";
-import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { AntiqueContext } from "../../../contexts/AntiqueContext";
 
 export function DeleteBid({ token, antiqueId, onDeleteAntique }) {
-    const navigate = useNavigate()
+    const { onDeleteSubmit } = useContext(AntiqueContext)
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
-    async function onDeleteSubmit(e) {
-        try {
-            await deleteOne(antiqueId, token);
-            navigate('/catalogue');
-            onDeleteAntique(antiqueId);
-        } catch (err) {
-            console.log(err.message)
-        }
-        setOpen(false);
-    };
 
     function onCancel(e) {
         setOpen(false);
@@ -40,7 +29,7 @@ export function DeleteBid({ token, antiqueId, onDeleteAntique }) {
                             <Box>
                                 <Button variant='contained'
                                     className={`${styles['button-delete']} ${styles['button-conformation']}`}
-                                    onClick={(e) => onDeleteSubmit(e)}>
+                                    onClick={(e) => onDeleteSubmit(e, antiqueId, token)}>
                                     Delete
                                 </Button>
                                 <Button

@@ -1,5 +1,5 @@
 import { createContext, useState, useEffect } from "react";
-import { getAll, getBySearch, getCollectionSize, putEdit, postCreate } from "../services/antiqueService";
+import { getAll, getBySearch, getCollectionSize, putEdit, postCreate, deleteOne } from "../services/antiqueService";
 import { useLocation, useNavigate } from "react-router-dom";
 import { getAllBids } from "../services/bidService";
 import { addBidsToAntiques, updateCurrentHighestBid } from "../utils/antiqueContextUtil";
@@ -11,10 +11,11 @@ export const AntiqueContext = createContext();
 export function AntiqueProvider({ children }) {
     const [antiqueData, setAntiqueData] = useState([]);
     const [collectionCount, setCollectionCount] = useState(0);
-    const [isSearchUndefined, setIsSearchUndefined] = useState(true);
     const [errors, setErrors] = useState({});
     const [search, setSearch] = useState('');
     const [pagination, setPagination] = useState({ offset: 0, page: 1 });
+    const [loading, setLoading] = useState(true);
+    const [isAntiqueDataUpdated, setisAntiqueDataUpdated] = useState(false);
     const navigate = useNavigate();
     const location = useLocation();
 
@@ -22,36 +23,32 @@ export function AntiqueProvider({ children }) {
         setPagination(state => ({ ...state, offset: 0, page: 1 }));
     };
 
+    //reset pagination, search, errors upon location change.
     useEffect(() => {
-        if (location.pathname !== '/catalog') {
-            setIsSearchUndefined(true);
-            resetPaginationState();
-        }
+        setSearch('')
+        resetPaginationState();
+        setisAntiqueDataUpdated(false)
+        setErrors({})
     }, [location.pathname]);
 
     useEffect(() => {
-        if (isSearchUndefined) {
-            Promise.all([getAll(pagination.offset), getCollectionSize(), getAllBids()])
-                .then(response => {
-                    const [data, count, bidsData] = response;
-                    const antiques = Object.values(data);
-                    const bids = Object.values(bidsData);
-                    setAntiqueData(addBidsToAntiques(antiques, bids));
-                    setCollectionCount(count);
-                })
-                .catch(err => console.log(err.message));
+        let promise;
+        if (!search) {
+            promise = Promise.all([getAll(pagination.offset), getCollectionSize(), getAllBids()]);
         } else {
-            Promise.all([getBySearch(search, pagination.offset), getAllBids()])
-                .then(response => {
-                    const [{ data, count }, bidsData] = response;
-                    const antiques = Object.values(data);
-                    const bids = Object.values(bidsData);
-                    setAntiqueData(addBidsToAntiques(antiques, bids));
-                    setCollectionCount(count);
-                })
-                .catch(err => console.log(err.message));
-        };
-    }, [pagination.offset, isSearchUndefined, search]);
+            promise = Promise.all([getBySearch(search, pagination.offset), getCollectionSize(search), getAllBids()]);
+        }
+        promise
+            .then(response => {
+                const [data, count, bidsData] = response;
+                const antiques = Object.values(data);
+                const bids = Object.values(bidsData);
+                setAntiqueData(addBidsToAntiques(antiques, bids));
+                setCollectionCount(count);
+                setLoading(false);
+            })
+            .catch(error => console.log(error.message));
+    }, [pagination.offset, search, isAntiqueDataUpdated]);
 
 
     const onBlurErrorMessage = (e) => {
@@ -59,13 +56,23 @@ export function AntiqueProvider({ children }) {
         setErrors(state => ({ ...state, [e.target.name]: errorMessage }))
     };
 
-    const onDeleteAntique = (antiqueId) => {
-        setAntiqueData(state => state.filter(antique => antique._id !== antiqueId));
-        setCollectionCount(state => state--);
-    };
-
+    //Upon bid, updates the price to be the highest one
     const handleUpdateCurrentHighestBid = (id, newHigh) => {
         updateCurrentHighestBid(id, newHigh, antiqueData, setAntiqueData);
+    };
+
+    function handlePaginationChange(e, value) {
+        return setPagination(state => ({ ...state, offset: (value - 1) * 8, page: value }));
+    };
+
+    async function onDeleteSubmit(e, antiqueId, token) {
+        try {
+            await deleteOne(antiqueId, token);
+        } catch (err) {
+            console.log(err.message)
+        }
+        setisAntiqueDataUpdated(true);
+        navigate('/catalogue');
     };
 
     const onSearchSubmit = async (e, searchValue) => {
@@ -74,7 +81,6 @@ export function AntiqueProvider({ children }) {
             return;
         };
         resetPaginationState();
-        setIsSearchUndefined(false);
         setSearch(searchValue);
     };
 
@@ -91,23 +97,15 @@ export function AntiqueProvider({ children }) {
         try {
             const duration = formValues.bidDetails.endDate
             formValues.bidDetails.endDate = formatDuration(duration)
-            const data = await postCreate(formValues, token);
-            setAntiqueData(state => {
-                const newState = [...state];
-                newState.unshift(data);
-                if (collectionCount > 8) {
-                    newState.pop();
-                }
-                return newState;
-            });
-            setCollectionCount(state => state++);
-            navigate('/catalogue');
+            await postCreate(formValues, token);
         } catch (err) {
             return showNotification(err.message);
         }
+        setisAntiqueDataUpdated(true)
+        navigate('/catalogue');
     };
 
-    const onEditAntiqueSubmit = async (e, antiqueId, formValues, token, showNotification, resetFormValues) => {
+    const onEditAntiqueSubmit = async (e, antiqueId, formValues, token, showNotification, initialDate) => {
         e.preventDefault();
         for (const value of Object.values(errors)) {
             if (value) {
@@ -118,6 +116,8 @@ export function AntiqueProvider({ children }) {
             return showNotification('Missing fields. Please try again.');
         };
         try {
+            //get the duration in hours, adding it to the old one in order to extend the bid duration
+            formValues.bidDetails.endDate = formatDuration(formValues.bidDetails.endDate, initialDate);
             const editedValues = await putEdit(antiqueId, formValues, token);
             setAntiqueData(state => state.map(x => x._id === antiqueId ? editedValues : x));
             navigate(`/catalogue/details/${antiqueId}`);
@@ -135,15 +135,16 @@ export function AntiqueProvider({ children }) {
         collectionCount,
         pagination,
         errors,
-        setPagination,
-        setIsSearchUndefined,
+        loading,
+        setSearch,
+        findAntiqueById,
+        handlePaginationChange,
         handleUpdateCurrentHighestBid,
-        onDeleteAntique,
+        onDeleteSubmit,
         onSearchSubmit,
         onCreateAntiqueSubmit,
         onEditAntiqueSubmit,
         onBlurErrorMessage,
-        findAntiqueById
     };
 
     return (
