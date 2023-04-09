@@ -166,7 +166,7 @@ export function Edit() {
                                 </Box>
                                 <Box className={styles['input-wrapper']}>
                                     <FormControl className={styles['create-input']}>
-                                        <InputLabel id='bid-duration-label'>Bid Duration</InputLabel>
+                                        <InputLabel id='bid-duration-label'>Extend bid duration</InputLabel>
                                         <Select
                                             labelId="bid-duration-label"
                                             label='Extend bid duration'
