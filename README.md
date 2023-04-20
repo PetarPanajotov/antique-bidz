@@ -1,7 +1,7 @@
 # Introduction
 Antiquebids is a website developed using React for the SoftUni course defense (09.April.2023). The platform allows users to place bids or create their own bids.
 ## Deployment
-The application is deployed on [https://antiquebidz.web.app](https://antiquebidz.web.app). Keep in mind that the server are still required in order to fetch the data. See the installation guide. The app will be migrated to firebase data in the near future.
+The application is deployed on [https://antiquebidz.web.app](https://antiquebidz.web.app). Keep in mind that the server is still required in order to fetch the data. See the installation guide. The app will be migrated to firebase data in the near future.
 
 ## Installation
 ```bash
